@@ -1,0 +1,165 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Black.ttf",
+      "sha1": "405a6e7828f292099161bf5cccb5402ec19f1833"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-BlackItalic.ttf",
+      "sha1": "cffbcaeae7ec6a4baabdcdd02227beddfaa49d5e"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Bold.ttf",
+      "sha1": "0bd7e256f73efd0a8135c5090d62f150107ff37a"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-BoldItalic.ttf",
+      "sha1": "1a5d8555a995733597d706fe3d02a38aa48dcc44"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-ExtraBold.ttf",
+      "sha1": "18efb439fa36b6da24cf550de93a94c92cbe8d71"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-ExtraBoldItalic.ttf",
+      "sha1": "33ae2a753d95b035cf7534a9af614fde3de2bdc0"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-ExtraLight.ttf",
+      "sha1": "2487b745e3b46baa3c249062a48b79efeb48d314"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-ExtraLightItalic.ttf",
+      "sha1": "2b61bfae7dc344b368c1a4c95c25f0b2e65ac415"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Italic.ttf",
+      "sha1": "cd74c031ed87c52f81b12e1886133283f36cc44a"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Light.ttf",
+      "sha1": "4c7d4497bc6b506d9fefdc8227418bbb637bc524"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-LightItalic.ttf",
+      "sha1": "e6985b646a67ed2885e15c3f5b23dab28246621b"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Medium.ttf",
+      "sha1": "7525dd63d853386f3c192fa78502e547ea620e96"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-MediumItalic.ttf",
+      "sha1": "b1d0a7a04e0b02414e50a69d8c7c952e42abea20"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Regular.ttf",
+      "sha1": "03d9e7cd56b446b0585b36a46c3f4b140c6e0026"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-SemiBold.ttf",
+      "sha1": "1b8668d1e0f6949d9a702c2a590971ab7946a79f"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-SemiBoldItalic.ttf",
+      "sha1": "6d432d0456dfc9f59a091444b5aae82f35c3df2d"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-Thin.ttf",
+      "sha1": "629a4d348ac61e1ddabafc63683296ca7e1bfbe5"
+    },
+    {
+      "path": "app/assets/fonts/BeVietnamPro-ThinItalic.ttf",
+      "sha1": "6d7cc87fe54c683c66d0a791d82c4a10561488b8"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Black.ttf",
+      "sha1": "ad9c434705a52d90ac5a770e591c2325fb48c2dc"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-BlackItalic.ttf",
+      "sha1": "88f974aa3e6d5e3d1fd563345be9e513809bb143"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Bold.ttf",
+      "sha1": "98c66622226025f539568865af96df5175e2979c"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-BoldItalic.ttf",
+      "sha1": "516e381cb5824e976db5cfb69d630a24f27a9ba6"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-ExtraBold.ttf",
+      "sha1": "1e3298f51b4766e2810a4a2c09a2c75c323d5e7e"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-ExtraBoldItalic.ttf",
+      "sha1": "bf0e072950871eeb704e74f49605847db7ff3a02"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-ExtraLight.ttf",
+      "sha1": "9437f01c62e4f0c1d42b5cf3e244997aafbea70d"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-ExtraLightItalic.ttf",
+      "sha1": "6dd4c350b2549a902852ed91cbc2ed87e98f60d7"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf",
+      "sha1": "92d0e87485dff4f41184e3ae9497c5d1795c1827"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Italic.ttf",
+      "sha1": "9b14c390a8b40d941f62a971cb6d7d152e59154a"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Light.ttf",
+      "sha1": "9dfbddad5025d8d224b4939e54c1a4ac8ac6015b"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-LightItalic.ttf",
+      "sha1": "c7b6a26d9e3e165d3a079c669f374a4a7e01c0a7"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Medium.ttf",
+      "sha1": "25c429296b9d6eb242cba92d1ee7fae484b019cb"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-MediumItalic.ttf",
+      "sha1": "0670c90adbabf7dd8a9e4428dced5e0f2a54e97d"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Regular.ttf",
+      "sha1": "bb895d19b8a1fbe1c57fc89cac5da82fdc8fdef4"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-SemiBold.ttf",
+      "sha1": "0754a3a23d8d68b0f0558df3109e0df86e968f24"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-SemiBoldItalic.ttf",
+      "sha1": "ca6ae187de8e41e8c82d282202d5ed98173a5176"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-Thin.ttf",
+      "sha1": "7061ef5f2b5aef62263dbe728114ccd25014aa4e"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-ThinItalic.ttf",
+      "sha1": "9455ac7542b843c9bf96db3dd59302d7da39fa3c"
+    },
+    {
+      "path": "app/assets/fonts/Montserrat-VariableFont_wght.ttf",
+      "sha1": "debd10e57fb07dd24187c41679885129449c1435"
+    },
+    {
+      "path": "app/assets/fonts/OFL.txt",
+      "sha1": "05be88ec92c1a8edab8a17ea1aa988d13154c994"
+    },
+    {
+      "path": "app/assets/fonts/README.txt",
+      "sha1": "b9c6a3678b961f94537458fac324897cd60b0ddd"
+    }
+  ]
+}
