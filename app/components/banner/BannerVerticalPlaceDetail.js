@@ -2,42 +2,46 @@ import React, { useRef, useState, useEffect } from 'react';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import AppColors from '../../assets/AppColors';
-import dashboardApi from '../../controllers/api/dashboardApi';
-import _ from 'lodash';
+import Const from '../Const';
 
-// const ENTRIES1 = [
-//     {
-//         title: 'Beautiful and dramatic Antelope Canyon',
-//         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-//         illustration: 'https://i.imgur.com/UYiroysl.jpg',
-//     },
-//     {
-//         title: 'Earlier this morning, NYC',
-//         subtitle: 'Lorem ipsum dolor sit amet',
-//         illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
-//     },
-//     {
-//         title: 'White Pocket Sunset',
-//         subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-//         illustration: 'https://i.imgur.com/MABUbpDl.jpg',
-//     },
-//     {
-//         title: 'Acrocorinth, Greece',
-//         subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-//         illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
-//     },
-//     {
-//         title: 'The lone tree, majestic landscape of New Zealand',
-//         subtitle: 'Lorem ipsum dolor sit amet',
-//         illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
-//     },
-// ];
+const ENTRIES1 = [
+    {
+        title: 'Beautiful and dramatic Antelope Canyon',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        illustration: 'https://i.imgur.com/UYiroysl.jpg',
+    },
+    {
+        title: 'Earlier this morning, NYC',
+        subtitle: 'Lorem ipsum dolor sit amet',
+        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
+    },
+    {
+        title: 'White Pocket Sunset',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
+        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
+    },
+    {
+        title: 'Acrocorinth, Greece',
+        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+        illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
+    },
+    {
+        title: 'The lone tree, majestic landscape of New Zealand',
+        subtitle: 'Lorem ipsum dolor sit amet',
+        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
+    },
+];
 
-const accessToken = '';
+const banners = ENTRIES1.map((item) => {
+    return {
+        ...item,
+        deepUrl: 'https://www.facebook.com/',
+    };
+});
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const Banner = (props) => {
+const BannerVerticalPlaceDetail = (props) => {
     const [entries, setEntries] = useState([]);
     const carouselRef = useRef(null);
 
@@ -45,26 +49,8 @@ const Banner = (props) => {
         carouselRef.current.snapToNext();
     };
 
-    const [topPlaces, setTopPlaces] = useState([]);
-    const getTopPlaces = async () => {
-        const data = await dashboardApi.topPlace(accessToken);
-
-        if (_.isArray(data?.data?.data)) {
-            setTopPlaces(
-                data?.data?.data.map((place) => {
-                    return {
-                        title: place?.name,
-                        subtitle: place?.name,
-                        illustration: place?.images[0]?.url,
-                    };
-                }),
-            );
-            console.log('top places: ', topPlaces);
-        }
-    };
-
     useEffect(() => {
-        getTopPlaces();
+        setEntries(ENTRIES1);
     }, []);
 
     const renderItem = ({ item, index }, parallaxProps) => {
@@ -77,7 +63,7 @@ const Banner = (props) => {
                     }}
                 >
                     <ParallaxImage
-                        source={{ uri: item?.illustration }}
+                        source={{ uri: item.illustration }}
                         containerStyle={styles.imageContainer}
                         style={styles.image}
                         parallaxFactor={0.4}
@@ -93,20 +79,26 @@ const Banner = (props) => {
 
     return (
         <View style={styles.container}>
-            <Carousel
+            {/* <Carousel
                 ref={carouselRef}
                 sliderWidth={screenWidth}
                 // sliderHeight={screenWidth}
-                itemWidth={screenWidth - 60}
-                data={topPlaces}
+                itemWidth={screenWidth}
+                data={entries}
                 renderItem={renderItem}
                 hasParallaxImages={true}
-            />
+                inactiveSlideScale={1}
+                autoplay={true}
+                loop={true}
+                // lockScrollTimeoutDuration={10}
+
+                layout="default"
+            /> */}
         </View>
     );
 };
 
-export default Banner;
+export default BannerVerticalPlaceDetail;
 
 const styles = StyleSheet.create({
     container: {

@@ -50,7 +50,7 @@ export default function SearchHeader({ title, icon, style, onIconPress, navigati
                         onSearch={() => {
                             console.log('On search');
                         }}
-                        onFocus={() => {}}
+                        onFocus={() => { }}
                         onClearData={() => {
                             setTxtSearch('');
                         }}
@@ -70,7 +70,7 @@ export default function SearchHeader({ title, icon, style, onIconPress, navigati
                             size={30}
                             style={{
                                 alignSelf: 'center',
-                                // marginHorizontal: Const.space_10,
+                                marginHorizontal: Const.space_10,
                                 width: Const.space_30,
                                 height: Const.space_30,
                                 color: AppColors.whiteSmoke,

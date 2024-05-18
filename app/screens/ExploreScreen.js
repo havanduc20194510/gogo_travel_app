@@ -14,9 +14,9 @@ export default ExploreScreen = () => {
             <Image
                 source={require('../assets/images/explore.jpg')}
                 style={{
-                    objectFit: 'cover',
+                    objectFit: 'fill',
                     width: Const.fullScreenWidth,
-                    height: Const.fullScreenHeight - 40,
+                    height: Const.fullScreenHeight,
                     // paddingVertical: 20,
                 }}
             ></Image>
@@ -110,7 +110,7 @@ export default ExploreScreen = () => {
                     bgrColor={'#196EEE'}
                     onPress={() => {
                         console.log('Explore');
-                        navigatorUtils.navigate('MainTabBar');
+                        navigatorUtils.navigate('LoginScreen');
                     }}
                 ></ButtonFullBgr>
             </View>

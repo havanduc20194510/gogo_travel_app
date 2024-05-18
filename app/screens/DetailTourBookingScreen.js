@@ -20,12 +20,14 @@ import env from '../../env.json';
 const screenWidth = Const.fullScreenWidth;
 const heightWidth = Const.fullScreenHeight;
 
-export default DetailTourScreen = (params) => {
+export default DetailTourBookingScreen = (params) => {
     const { t } = useTranslation();
     const tour = params?.route?.params?.tour;
 
+    // console.log('tour: ', tour
+
     const [desTour, setDesTour] = useState(
-        tour.description.length > 15 ? tour.description.substr(0, 150) : tour.description,
+        tour?.description?.length > 15 ? tour?.description?.substr(0, 150) : tour?.description,
     );
     const [readMoreIcon, setReadMoreIcon] = useState(false);
 
@@ -52,7 +54,6 @@ export default DetailTourScreen = (params) => {
 
     const carouselRef = useRef(null);
     const renderItem = ({ item, index }, parallaxProps) => {
-        // console.log('item: ', item);
         return (
             <TouchableOpacity
                 onPress={() => {
@@ -440,34 +441,6 @@ export default DetailTourScreen = (params) => {
                         );
                     })}
                 </View>
-
-                <View
-                    style={{
-                        justifyContent: 'space-between',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginVertical: 20,
-                    }}
-                >
-                    <View>
-                        <Text style={{ color: AppColors.black, fontWeight: 700 }}>{t('Price')}</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 700 }}>
-                            {/* <FontAwesome6 name="hand-holding-dollar" size={30}></FontAwesome6> {tour?.adultPrice ?? 199} */}
-                            {tour?.adultPrice ?? 199}
-                        </Text>
-                    </View>
-                    <ButtonIcon
-                        title={t('Book now')}
-                        fontSize={24}
-                        icon={<Ionicons name="arrow-forward-outline" color={AppColors.white} size={36}></Ionicons>}
-                        width={'70%'}
-                        height={60}
-                        onPress={() => {
-                            // console.log('book');
-                            navigatorUtils.navigate('PaymentMethodScreen', { tour: tour });
-                        }}
-                    ></ButtonIcon>
-                </View>
             </ScrollView>
         </View>
     );
@@ -483,6 +456,8 @@ const styles = StyleSheet.create({
         top: 0,
         height: 'auto',
         position: 'relative',
+        marginBottom: 10,
+        paddingBottom: 10,
     },
     iconBanner: {
         padding: 5,

@@ -4,11 +4,11 @@ import AppColors from '../../assets/AppColors';
 import navigatorUtils from '../../utils/navigator.utils';
 import { useTranslation } from 'react-i18next';
 
-export default TourCard = ({ image, name, description, tour }) => {
+export default PlaceCard = ({ place }) => {
     const { t } = useTranslation();
     const handleNavigateTourDetail = () => {
-        console.log('detail tour');
-        navigatorUtils.navigate('DetailTourScreen', { tour: tour });
+        //  console.log('detail place');
+        navigatorUtils.navigate('PlaceDetailScreen', { place: place });
     };
     return (
         <TouchableOpacity
@@ -17,8 +17,8 @@ export default TourCard = ({ image, name, description, tour }) => {
                 handleNavigateTourDetail();
             }}
         >
-            {image ? (
-                <Image source={{ uri: image }} style={styles.image}></Image>
+            {place?.images[0]?.url ? (
+                <Image source={{ uri: place?.images[0]?.url }} style={styles.image}></Image>
             ) : (
                 <Image style={styles.image} source={require('../../assets/images/imgTourDefault.jpg')}></Image>
             )}
@@ -27,12 +27,9 @@ export default TourCard = ({ image, name, description, tour }) => {
                     style={{
                         fontSize: 24,
                         fontWeight: 700,
-                        textShadowColor: '#fff',
-                        textShadowRadius: 10,
-                        color: AppColors.backgroundHeader,
                     }}
                 >
-                    {name ? (name.length > 15 ? name.slice(0, 15) : name) : t('Tour card')}
+                    {place?.name ?? 'Place'}
                 </Text>
                 <Text
                     style={{
@@ -42,11 +39,7 @@ export default TourCard = ({ image, name, description, tour }) => {
                         fontWeight: 400,
                     }}
                 >
-                    {description
-                        ? description.length > 190
-                            ? `${description.slice(0, 190)}...`
-                            : description
-                        : t('Description')}
+                    {place?.description ?? t('Description')}
                 </Text>
             </View>
         </TouchableOpacity>

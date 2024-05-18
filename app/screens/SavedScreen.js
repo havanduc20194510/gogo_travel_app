@@ -7,8 +7,32 @@ import AppColors from '../assets/AppColors';
 import Const from '../components/Const';
 import { Image } from 'react-native';
 import TourCard from '../components/TourCard/TourCard';
+import { useAccount, useAuth } from '../controllers/hook/AccountHook';
+import bookingApi from '../controllers/api/bookingApi';
+import _ from 'lodash';
+import { useEffect, useState } from 'react';
+import moment from 'moment';
+import { formatCurrencyK } from '../utils/util';
+import TourCardSaved from '../components/TourCard/TourCardSaved';
 
 export default SavedScreen = () => {
+    const user = useAccount();
+    const accessToken = useAuth();
+
+    const [bookings, setBookings] = useState([]);
+    const getBookings = async () => {
+        const data = await bookingApi.getBookingOfUser(accessToken, user?.id);
+
+        if (_.isArray(data?.data?.data)) {
+            setBookings(data?.data?.data);
+        }
+    };
+
+    useEffect(() => {
+        getBookings();
+        console.log('bookings: ', bookings);
+    }, []);
+
     return (
         <View>
             {/* header */}
@@ -109,7 +133,7 @@ export default SavedScreen = () => {
                                     color: '#FFFCF2',
                                 }}
                             >
-                                Ha VN
+                                {user?.fullname ?? user?.username ?? user?.email ?? 'Name'}
                             </Text>
                         </TouchableOpacity>
 
@@ -133,14 +157,20 @@ export default SavedScreen = () => {
                     </View>
 
                     <View style={{ top: -70, marginHorizontal: 10 }}>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
-                        <TourCard></TourCard>
+                        {bookings.map((booking) => {
+                            return (
+                                <TourCardSaved
+                                    image={booking?.tour?.images[0]?.url}
+                                    description={booking?.note}
+                                    status={booking?.status}
+                                    taskDeadline={booking?.taskDeadline}
+                                    bookingDate={moment(booking?.bookingDate).format('DD-MM-YYYY')}
+                                    total={formatCurrencyK(booking?.total)}
+                                    tourName={booking?.tour?.name}
+                                    tour={booking?.tour}
+                                ></TourCardSaved>
+                            );
+                        })}
                     </View>
                 </View>
             </ScrollView>

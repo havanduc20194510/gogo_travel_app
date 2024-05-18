@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MultiSelect } from 'react-native-element-dropdown';
-import Ionicons from "react-native-vector-icons/Ionicons";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Const from '../Const';
 import AppColors from '../../assets/AppColors';
 import { Text } from 'react-native';
 
-const data = [
-    { label: 'Item 1          g', value: '1' },
-    { label: 'Item 2 sfdfdfsdf', value: '2' },
-    { label: 'Item 3sadfffffffffff', value: '3' },
-    { label: 'Item 4', value: '4' },
-    { label: 'Item 5ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', value: '5' },
-    { label: 'Item 6', value: '6' },
-    { label: 'Item 7fffffffffff', value: '7' },
-    { label: 'Item 8', value: '8' },
-];
-
-const MultiSelectComponent = () => {
+const MultiSelectComponent = ({ dataSelect, placeholder, searchPlaceholder }) => {
     const [selected, setSelected] = useState([]);
 
     return (
@@ -28,22 +17,27 @@ const MultiSelectComponent = () => {
                 inputSearchStyle={styles.inputSearchStyle}
                 iconStyle={styles.iconStyle}
                 search
-                data={data}
+                data={dataSelect}
                 labelField="label"
                 valueField="value"
-                placeholder="Activity"
-                searchPlaceholder="Search..."
+                placeholder={placeholder ?? 'Departure from'}
+                searchPlaceholder={searchPlaceholder ?? 'Search...'}
                 value={selected}
-                onChange={item => {
+                onChange={(item) => {
                     setSelected(item);
                 }}
                 // renderLeftIcon={() => (
                 //     <Ionicons name='repo-deleted' size={40}></Ionicons>
                 // )}
                 selectedStyle={{ display: 'none' }}
-                itemContainerStyle={{ backgroundColor: AppColors.aliceblue, borderRadius: 8, marginHorizontal: 10, marginVertical: 5, padding: 0 }}
+                itemContainerStyle={{
+                    backgroundColor: AppColors.aliceblue,
+                    borderRadius: 8,
+                    marginHorizontal: 10,
+                    marginVertical: 5,
+                    padding: 0,
+                }}
                 containerStyle={{ backgroundColor: AppColors.backgroundDropdown, borderRadius: 10 }}
-
             />
         </View>
     );
@@ -58,11 +52,11 @@ const styles = StyleSheet.create({
         // backgroundColor: '#FFFBF6',
         borderBottomColor: 'gray',
         borderBottomWidth: 0.5,
-        borderRadius: 16
+        borderRadius: 16,
     },
     placeholderStyle: {
         fontSize: 16,
-        marginHorizontal: 20
+        marginHorizontal: 20,
     },
     iconStyle: {
         width: 20,
@@ -78,7 +72,7 @@ const styles = StyleSheet.create({
     selectedStyle: {
         borderRadius: 12,
         padding: 2,
-        marginVertical: 5
+        marginVertical: 5,
         // maxWidth: 40, maxHeight: 40
     },
 });

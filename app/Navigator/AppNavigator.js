@@ -15,21 +15,27 @@ import OnboardingScreen from '../screens/OnBoardDingScreen';
 import DetailTourScreen from '../screens/DetailTourScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import PaymentMethodScreen from '../screens/PaymentMethodScreen';
+import PlaceDetailScreen from '../screens/PlaceDetailScreen';
+import DetailTourBookingScreen from '../screens/DetailTourBookingScreen';
 
 const AppNavigator = () => {
     const tag = '[AppNavigator]';
     enableScreens();
     const Stack = createStackNavigator();
-    const [log, setLog] = useState(false);
+    const [login, checkLogin] = useState(true);
 
     const isLogged = async () => {
-        setLog(await UserHelper.checkAccessTokenValid());
+        checkLogin(await UserHelper.checkAccessTokenValid());
     };
     isLogged();
     return (
         <NavigationContainer ref={rootNavigationRef}>
             <GlobalComponent />
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'ExploreScreen'}>
+            <Stack.Navigator
+                screenOptions={{ headerShown: false }}
+                // initialRouteName={'RegisterScreen'}
+                initialRouteName={login ? 'MainTabBar' : 'ExploreScreen'}
+            >
                 <Stack.Screen
                     name="OnBoardingScreen"
                     component={OnboardingScreen}
@@ -44,6 +50,8 @@ const AppNavigator = () => {
                 />
                 <Stack.Screen name="MainTabBar" component={MainTabBar} options={{ headerTitle: 'Header MainTabBar' }} />
                 <Stack.Screen name="DetailTourScreen" component={DetailTourScreen} />
+                <Stack.Screen name="DetailTourBookingScreen" component={DetailTourBookingScreen} />
+                <Stack.Screen name="PlaceDetailScreen" component={PlaceDetailScreen} />
                 <Stack.Screen name="ExploreScreen" component={ExploreScreen} />
                 <Stack.Screen name="PaymentMethodScreen" component={PaymentMethodScreen} />
             </Stack.Navigator>

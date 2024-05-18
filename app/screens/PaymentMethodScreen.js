@@ -1,7 +1,7 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppColors from '../assets/AppColors';
 import { Image } from 'react-native';
 import Const from '../components/Const';
@@ -12,17 +12,72 @@ import { useState } from 'react';
 import ButtonHasBorderSelect from '../components/buttons/custom/ButtonHasBorderSelect';
 import AppTextInput from '../components/input/AppTextInput';
 import ButtonHasBorderSelectVoucher from '../components/buttons/custom/ButtonHasBorderSelectVoucher';
+import bookingApi from '../controllers/api/bookingApi';
+import moment from 'moment';
+import SelectInput from '../components/input/SelectInput';
+import DialogError from '../components/dialog/error/DialogError';
+import GlobalIndicator from '../components/indicator/GlobalIndicator';
 
-export default PaymentMethodScreen = () => {
+export default PaymentMethodScreen = (params) => {
+    const user = useAccount();
+    const accessToken = useAuth();
+
     const { t } = useTranslation();
+    const tour = params?.route?.params?.tour;
 
     const [paymentMethod, setPaymentMethod] = useState('');
     const [voucher, setVoucher] = useState([1, 2, 3, 4, 5, 6, 7]);
     const [selectVoucher, setSelectVoucher] = useState('');
     const [searchVoucher, setSearchVoucher] = useState();
+    const [qr, setQr] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    // const [startDate, setStartDate] = useState(moment().format('YYYY-MM-DD'));
+    const [numberOfAdults, setNumberOfAdults] = useState(0);
+    const [numberOfChildren, setNumberOfChildren] = useState(0);
+    const [numberOfBabies, setNumberOfBabies] = useState(0);
+    const [note, setNote] = useState('');
+    const [selectDepartureTime, setSelectDepartureTime] = useState();
+    const [showError, setShowError] = useState(false);
+    const [messageError, setMessageError] = useState('');
+
+    const handleBooking = async () => {
+        GlobalIndicator.show(t('Sending'));
+
+        const data = await bookingApi.create(accessToken, {
+            tourId: tour.tourId,
+            userId: user?.userId,
+            email: email,
+            phone: phone,
+            numberOfAdults: numberOfAdults,
+            numberOfChildren: numberOfChildren,
+            numberOfBabies: numberOfBabies,
+            note: note,
+            startDate: selectDepartureTime,
+        });
+
+        if (data?.status === 'error') {
+            setShowError(!showError);
+            setMessageError(data?.error);
+            // console.log('error123123: ', data?.status);
+        } else {
+            navigatorUtils.navigate('SavedScreen');
+        }
+        GlobalIndicator.hide();
+    };
+
+    console.log('departureTimes: ', tour?.departureTimes);
 
     return (
-        <SafeAreaView>
+        <View>
+            <DialogError
+                setVisible={setShowError}
+                visible={showError}
+                labelCancel={'Cancel'}
+                labelOk={'OK'}
+                title={t('Create booking failed')}
+                description={messageError}
+            ></DialogError>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     {/* header back */}
@@ -63,6 +118,31 @@ export default PaymentMethodScreen = () => {
                         <View></View>
                     </View>
 
+                    {/* Price */}
+                    <View
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 15,
+                            marginVertical: 10,
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text style={{}}>{t('Price')}</Text>
+                            <FontAwesome5 name="coins" size={20} style={{ color: '#FF0000' }}></FontAwesome5>
+                        </View>
+                    </View>
+
                     {/* payment method */}
                     <View
                         style={{
@@ -96,7 +176,7 @@ export default PaymentMethodScreen = () => {
                     </View>
 
                     {/* user voucher */}
-                    <View
+                    {/* <View
                         style={{
                             width: (Const.fullScreenWidth * 8) / 10,
                             alignItems: 'center',
@@ -151,10 +231,265 @@ export default PaymentMethodScreen = () => {
                                 );
                             })}
                         </ScrollView>
+                    </View> */}
+
+                    {/* Use coin */}
+                    <View
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 20,
+                            marginVertical: 10,
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                alignItems: 'center',
+                                marginBottom: 5,
+                            }}
+                        >
+                            <Text style={{ bottom: 5 }}>{t('Use coin')}</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
+                                <Text style={{ color: 'red' }}>500</Text>
+                                <FontAwesome5 name="coins" size={20} style={{ color: '#FF0000' }}></FontAwesome5>
+                            </View>
+                        </View>
+
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            isNumber={true}
+                            placeholder={t('Coin')}
+                            onChangeText={(text) => {
+                                setSearchVoucher(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setSearchVoucher('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
                     </View>
+
+                    {/*  info user */}
+                    <View
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 20,
+                            marginVertical: 10,
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                alignItems: 'center',
+                                marginBottom: 5,
+                            }}
+                        >
+                            <Text style={{ bottom: 5 }}>{t('Information')}</Text>
+                        </View>
+                        {/* phone */}
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            isNumber={true}
+                            placeholder={t('Phone')}
+                            onChangeText={(text) => {
+                                setPhone(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setPhone('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+                        <View style={{ height: 10 }}></View>
+                        {/* email */}
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            // isNumber={true}
+                            placeholder={t('Email')}
+                            onChangeText={(text) => {
+                                setEmail(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setEmail('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+                        <View style={{ height: 10 }}></View>
+                        {/* note */}
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            // isNumber={true}
+                            placeholder={t('Note')}
+                            onChangeText={(text) => {
+                                setNote(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setNote('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+                        {/* adults */}
+                        <View style={{ height: 10 }}></View>
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            isNumber={true}
+                            placeholder={t('Number adults')}
+                            onChangeText={(text) => {
+                                setNumberOfAdults(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setNumberOfAdults('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+                        {/* childr4en */}
+                        <View style={{ height: 10 }}></View>
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            isNumber={true}
+                            placeholder={t('Number children')}
+                            onChangeText={(text) => {
+                                setNumberOfChildren(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setNumberOfChildren('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+                        {/* baby */}
+                        <View style={{ height: 10 }}></View>
+                        <AppTextInput
+                            // title={t('Voucher')}
+                            value={searchVoucher}
+                            isNumber={true}
+                            placeholder={t('Number babies')}
+                            onChangeText={(text) => {
+                                setNumberOfBabies(text);
+                                console.log(searchVoucher);
+                            }}
+                            // editable={true}
+
+                            onClear={() => {
+                                setNumberOfBabies('');
+                            }}
+                            // borColor={AppColors.neutral}
+                            // message={''}
+                            // backgroundColor={'red'}
+                            textColor={'#1EDCDC'}
+                        ></AppTextInput>
+
+                        <View style={{ height: 10 }}></View>
+                        {tour?.departureTimes?.length > 0 && (
+                            <SelectInput
+                                data={tour?.departureTimes.map((time) => {
+                                    return {
+                                        title: time?.startDate,
+                                    };
+                                })}
+                                setFilterType={setSelectDepartureTime}
+                                borderWidthContainer={1}
+                            ></SelectInput>
+                        )}
+                    </View>
+
+                    {/* QR */}
+                    {/* <View
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 20,
+                            marginVertical: 10,
+                        }}
+                    >
+                        <Text>Scan our QR</Text>
+                        <Image
+                            source={qr ? qr : require('../assets/images/imgDefaultQR.png')}
+                            style={{
+                                objectFit: 'fill',
+                                width: (Const.fullScreenWidth * 8) / 10 - 10,
+                                height: (Const.fullScreenWidth * 8) / 10 + 10,
+                                borderRadius: 20,
+                                marginTop: 10,
+                            }}
+                        ></Image>
+                    </View> */}
+
+                    <TouchableOpacity
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 10,
+                            marginVertical: 10,
+                        }}
+                        onPress={() => {
+                            handleBooking();
+                            console.log('complete');
+                        }}
+                    >
+                        <Text style={{ fontWeight: 700, fontSize: 20 }}>{t('Complete')}</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 

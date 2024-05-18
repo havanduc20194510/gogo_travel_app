@@ -1,0 +1,651 @@
+[
+    {
+        "id": "02fd30b4-ace6-4ce6-9d4e-cf2f577de29c",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 1,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc",
+        "bookingDate": "2024-05-17T05:05:00.69976",
+        "total": 5990000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "098630bb-5ed4-4b2e-b18c-7dc9af6cafa8",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "string",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 2,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc 123",
+        "bookingDate": "2024-05-17T05:02:33.892135",
+        "total": 11980000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "1f1ecbbe-1a16-4fb4-a353-644db2762861",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 1,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc",
+        "bookingDate": "2024-05-17T05:07:32.75428",
+        "total": 5990000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "750ab710-1d8e-4fbd-bab1-00263f779a3c",
+        "tour": {
+            "tourId": "3c3e0021-9f65-4331-9f34-ca886ca4e5e0",
+            "name": "TOUR TP.HCM | HÀ NỘI | LÀO CAI | SAPA | TRÀNG AN | BÁI ĐÍNH | HẠ LONG",
+            "adultPrice": 8990000,
+            "childPrice": 8490000,
+            "babyPrice": 3490000,
+            "unit": "vnđ",
+            "description": "Chiêm ngưỡng kỳ quan Vịnh Hạ Long.Khám phá sắc màu văn hóa Sapa.Non nước Ninh Bình, Di sản Thế Giới Bái Đính - Tràng An",
+            "numberOfDays": 5,
+            "numberOfNights": 4,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 3,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 15,
+            "tourType": {
+                "id": 1,
+                "name": "Tour trong nước"
+            },
+            "images": [
+                {
+                    "id": 1,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715154954/hxkityfhbmktmmx2hd13.jpg"
+                },
+                {
+                    "id": 2,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715154956/tz24lnzkays7gjwmddgj.jpg"
+                },
+                {
+                    "id": 3,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715154958/gev6empycpmhvqhqengf.jpg"
+                },
+                {
+                    "id": 4,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715154960/ydhzscnnmo7nrtc4exmv.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 1,
+                    "startDate": "2024-05-16",
+                    "numberOfSeats": 25,
+                    "bookedSeats": 0,
+                    "available": false
+                },
+                {
+                    "id": 4,
+                    "startDate": "2024-05-23",
+                    "numberOfSeats": 40,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": [
+                {
+                    "id": 1,
+                    "timeInDays": "Ngày 1",
+                    "title": "TP. HỒ CHÍ MINH - HÀ NỘI - SAPA ( • Ăn trưa • Ăn tối )",
+                    "scheduleDetail": [
+                        {
+                            "id": 1,
+                            "timeLine": "5h00",
+                            "place": "sân bay Tân Sơn Nhất",
+                            "activity": "HDV Đất Việt Tour đón đoàn tại sân bay Tân Sơn Nhất làm thủ tục bay đi Hà Nội. Đến sân bay Nội Bài, HDV đón đoàn xe khởi hành đưa đoàn đi Sapa."
+                        },
+                        {
+                            "id": 2,
+                            "timeLine": "11h30",
+                            "place": "Lào Cai",
+                            "activity": "Đoàn dùng cơm trưa tại Lào Cai."
+                        },
+                        {
+                            "id": 3,
+                            "timeLine": "Chiều",
+                            "place": "Cột mốc hữu nghị Việt Nam – Trung Quốc",
+                            "activity": "Quý khách tự do tham quan và chụp hình tại cột mốc hữu nghị Việt Nam – Trung Quốc."
+                        },
+                        {
+                            "id": 4,
+                            "timeLine": "15h00",
+                            "place": "Sapa",
+                            "activity": "Khởi hành đi Sapa nhận phòng nghỉ ngơi"
+                        },
+                        {
+                            "id": 5,
+                            "timeLine": "Tối",
+                            "place": "Sapa",
+                            "activity": "Quý khách dùng bữa tối tại nhà hàng."
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "timeInDays": "Ngày 2",
+                    "title": "SAPA - FANSIPAN/ CẦU KÍNH RỒNG MÂY - BẢN CÁT CÁT ( • Ăn sáng • Ăn trưa )",
+                    "scheduleDetail": []
+                },
+                {
+                    "id": 3,
+                    "timeInDays": "Ngày 3",
+                    "title": "SAPA - HÀ NỘI - QUẢNG TRƯỜNG BA ĐÌNH ( • Ăn sáng • Ăn trưa • Ăn tối )",
+                    "scheduleDetail": []
+                },
+                {
+                    "id": 4,
+                    "timeInDays": "Ngày 4",
+                    "title": "HÀ NỘI - KDL TRÀNG AN - HẠ LONG ( • Ăn sáng • Ăn trưa • Ăn tối )",
+                    "scheduleDetail": []
+                },
+                {
+                    "id": 5,
+                    "timeInDays": "Ngày 5",
+                    "title": "HẠ LONG - SÂN BAY NỘI BÀI ( • Ăn sáng • Ăn trưa )",
+                    "scheduleDetail": []
+                }
+            ]
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "a@gmail.com",
+        "phone": "0123456",
+        "startDate": "2024-05-16",
+        "numberOfAdults": 1,
+        "numberOfChildren": 2,
+        "numberOfBabies": 0,
+        "note": "no",
+        "bookingDate": "2024-05-16T16:35:39.565471",
+        "total": 25970000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-21",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "d08e4bb9-bc35-4038-bb79-c10609195899",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 1,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc",
+        "bookingDate": "2024-05-17T05:07:35.501155",
+        "total": 5990000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "f535ec61-d4e4-4b99-8dc0-e2b465374025",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 1,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc",
+        "bookingDate": "2024-05-17T05:07:36.549773",
+        "total": 5990000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    },
+    {
+        "id": "fbba301b-bd56-4b9d-9de1-54a2faa87283",
+        "tour": {
+            "tourId": "30343ef0-ea83-4534-bda8-de8a909de167",
+            "name": "TOUR ĐÀ NẴNG | RỪNG DỪA BẢY MẪU | HỘI AN | BÀ NÀ HILLS",
+            "adultPrice": 5990000,
+            "childPrice": 4290000,
+            "babyPrice": 3290000,
+            "unit": "vnđ",
+            "description": "Khám Phá Bà Nà Hills, Ngũ Hành Sơn.Rừng Dừa Bảy Mẫu, Phố Cổ Hội An.Thưởng Thức Hải Sản Tươi Ngon",
+            "numberOfDays": 3,
+            "numberOfNights": 2,
+            "vehicle": "Bay khứ hồi",
+            "departureLocation": "Hồ Chí Minh",
+            "hotelStar": 4,
+            "status": "ACTIVE",
+            "note": "QUÝ KHÁCH VUI LÒNG CHUẨN BỊ GIẤY TỜ TÙY THÂN ĐỂ ĐI MÁY BAY",
+            "totalView": 24,
+            "tourType": {
+                "id": 3,
+                "name": "Tour lễ"
+            },
+            "images": [
+                {
+                    "id": 10,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406077/i4vgpyriyolckxo4udfn.jpg"
+                },
+                {
+                    "id": 11,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406079/wpcpovgcygggoatfwomj.jpg"
+                },
+                {
+                    "id": 12,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406082/fzcdnicay6aovvdmzutp.jpg"
+                },
+                {
+                    "id": 13,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406240/eol8c96uxlcgnmxolzmh.jpg"
+                },
+                {
+                    "id": 14,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406241/ndvsesxw52xu60k93ixf.jpg"
+                },
+                {
+                    "id": 15,
+                    "url": "http://res.cloudinary.com/do8fykl80/image/upload/v1715406244/zxiae76zgcakoktylppo.jpg"
+                }
+            ],
+            "departureTimes": [
+                {
+                    "id": 2,
+                    "startDate": "2024-05-20",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "startDate": "2024-05-27",
+                    "numberOfSeats": 30,
+                    "bookedSeats": 0,
+                    "available": true
+                }
+            ],
+            "schedules": []
+        },
+        "user": {
+            "id": "56e83d65-df40-4db7-972b-d8e4d522a11c",
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "roles": ["USER"]
+        },
+        "email": "user1@gmail.com",
+        "phone": "",
+        "startDate": "2024-05-27",
+        "numberOfAdults": 1,
+        "numberOfChildren": 0,
+        "numberOfBabies": 0,
+        "note": "abc",
+        "bookingDate": "2024-05-17T05:08:08.700826",
+        "total": 5990000,
+        "status": "PENDING",
+        "taskDeadline": "2024-05-30",
+        "taskStatus": "PENDING"
+    }
+]
