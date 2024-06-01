@@ -4,6 +4,7 @@ import { Image, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import Global from '../Global';
 import navigatorUtils from '../../utils/navigator.utils';
 import SearchInput from '../input/SearchInput';
@@ -25,6 +26,10 @@ import AppColors from '../../assets/AppColors';
 export default function SearchHeader({ title, icon, style, onIconPress, navigation, unsafe }) {
     const [txtSearch, setTxtSearch] = useState('');
     const { t } = useTranslation();
+
+    const handleChatBot = () => {
+        navigatorUtils.navigate('ChatBotScreen');
+    };
     return (
         <View style={{ width: '100%', backgroundColor: AppColors.backgroundHeader, paddingBottom: 20 }}>
             {!!unsafe || <View style={{ height: Global.Const.statusBarHeight }} />}
@@ -50,7 +55,7 @@ export default function SearchHeader({ title, icon, style, onIconPress, navigati
                         onSearch={() => {
                             console.log('On search');
                         }}
-                        onFocus={() => { }}
+                        onFocus={() => {}}
                         onClearData={() => {
                             setTxtSearch('');
                         }}
@@ -77,9 +82,13 @@ export default function SearchHeader({ title, icon, style, onIconPress, navigati
                             }}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Ionicons
-                            name="chatbox-outline"
+                    <TouchableOpacity
+                        onPress={() => {
+                            handleChatBot();
+                        }}
+                    >
+                        <Fontisto
+                            name="lightbulb"
                             size={30}
                             style={{
                                 alignSelf: 'center',

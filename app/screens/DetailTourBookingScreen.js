@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -8,7 +8,7 @@ import Const from '../components/Const';
 import Styles, { shadow } from '../components/Styles';
 import navigatorUtils from '../utils/navigator.utils';
 import { useTranslation } from 'react-i18next';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchHeader from '../components/header/SearchHeader';
 import ButtonFullBgr from '../components/buttons/custom/ButtonFullBgr';
 import ButtonIcon from '../components/buttons/custom/ButtonIcon';
@@ -16,44 +16,56 @@ import ButtonIcon from '../components/buttons/custom/ButtonIcon';
 import { Table, Row, Rows, Col, TableWrapper } from 'react-native-table-component';
 import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
 import env from '../../env.json';
+import moment from 'moment';
+import { formatCurrency } from '../utils/util';
+import bookingApi from '../controllers/api/bookingApi';
+import GlobalIndicator from '../components/indicator/GlobalIndicator';
+import DialogError from '../components/dialog/error/DialogError';
+import { useAccount, useAuth } from '../controllers/hook/AccountHook';
 
 const screenWidth = Const.fullScreenWidth;
 const heightWidth = Const.fullScreenHeight;
 
 export default DetailTourBookingScreen = (params) => {
     const { t } = useTranslation();
-    const tour = params?.route?.params?.tour;
-
-    // console.log('tour: ', tour
+    const accessToken = useAuth();
+    const booking = params?.route?.params?.booking;
+    const tour = booking?.tour;
 
     const [desTour, setDesTour] = useState(
-        tour?.description?.length > 15 ? tour?.description?.substr(0, 150) : tour?.description,
+        tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description,
     );
     const [readMoreIcon, setReadMoreIcon] = useState(false);
 
     const handleReadMore = () => {
         if (readMoreIcon) {
-            setDesTour(tour.description.length > 15 ? tour.description.substr(0, 150) : tour.description);
+            setDesTour(tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description);
         } else {
-            setDesTour(tour.description);
+            setDesTour(tour?.description);
         }
     };
 
-    const [tableData, setTableData] = useState(
-        tour?.schedules.map((schedule) => {
-            return schedule?.scheduleDetail.map((sd) => {
-                return [sd.timeLine, sd.place, sd.activity];
-            });
-        }),
-    );
+    const [tableData, setTableData] = useState([
+        [t('email'), booking?.email],
+        [t('Phone'), booking?.phone],
+        [t('Start date'), moment(booking?.startDate).format('DD-MM-YYYY')],
+        [t('Adults'), booking?.numberOfAdults],
+        [t('Children'), booking?.numberOfChildren],
+        [t('Babies'), booking?.numberOfBabies],
+        [t('Note'), booking?.note],
+        [t('Booking date'), moment(booking?.bookingDate).format('HH:MM DD-MM-YYYY')],
+        [t('Total'), formatCurrency(booking?.total)],
+        [t('Status'), booking?.status],
+    ]);
 
     const state = {
-        tableHead: [t('Time line'), t('Place'), t('Activity')],
-        tableData: tableData[0],
+        // tableHead: [t('Time line'), t('Place'), t('Activity')],
+        tableData: tableData,
     };
 
     const carouselRef = useRef(null);
     const renderItem = ({ item, index }, parallaxProps) => {
+        // console.log('item: ', item);
         return (
             <TouchableOpacity
                 onPress={() => {
@@ -79,6 +91,52 @@ export default DetailTourBookingScreen = (params) => {
     };
 
     const [activeSlide, setActiveSlide] = useState(0);
+
+    const [paymentData, setPaymentData] = useState({});
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    useEffect(() => {
+        setPaymentData({
+            bookingId: booking?.id,
+            bankCode: 'NCB',
+            total: booking?.total,
+            language: 'vn',
+            returnUrl: 'https://gogo-travel-web-git-google-map-havanduc20194510s-projects.vercel.app/payment/check',
+            coin: false,
+        });
+    }, []);
+
+    const handlePayment = async () => {
+        setPaymentData({
+            bookingId: booking?.id,
+            bankCode: 'NCB',
+            total: booking?.total,
+            language: 'vn',
+            returnUrl: 'https://gogo-travel-web-git-google-map-havanduc20194510s-projects.vercel.app/payment/check',
+            coin: false,
+        });
+        GlobalIndicator.show(t('Sending'));
+        const res = await bookingApi.paymentBooking(accessToken, paymentData);
+
+        if (res?.status === 'error') {
+            setShowError(!showError);
+            setErrorMessage(res?.error);
+        } else {
+            console.log('response: ', JSON.stringify(res));
+            // navigatorUtils.goBack();
+            const paymentUrl = res?.data?.data?.paymentUrl;
+            Linking.openURL(paymentUrl);
+            // Linking.canOpenURL(paymentUrl).then((supported) => {
+            //     if (supported) {
+            //         Linking.openURL(paymentUrl);
+            //     } else {
+            //         console.log("Don't know how to open URI: " + paymentUrl);
+            //     }
+            // });
+        }
+        GlobalIndicator.hide();
+    };
 
     return (
         <View>
@@ -107,6 +165,16 @@ export default DetailTourBookingScreen = (params) => {
                     <Ionicons name="chevron-back" size={24}></Ionicons>
                 </TouchableOpacity>
             </View>
+            {showError && (
+                <DialogError
+                    setVisible={setShowError}
+                    visible={showError}
+                    labelCancel={'Cancel'}
+                    labelOk={'OK'}
+                    title={t('Payment failed')}
+                    description={errorMessage}
+                ></DialogError>
+            )}
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 {/* <SearchHeader></SearchHeader> */}
                 {/* Image */}
@@ -204,7 +272,13 @@ export default DetailTourBookingScreen = (params) => {
                     </View>
                 </View>
                 {/* Tour */}
-                <View style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center' }}>
+
+                <TouchableOpacity
+                    onPress={() => {
+                        navigatorUtils.navigate('DetailTourScreen', { tour: tour });
+                    }}
+                    style={{ justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center' }}
+                >
                     <Text
                         style={{
                             fontSize: 36,
@@ -216,7 +290,7 @@ export default DetailTourBookingScreen = (params) => {
                     >
                         {tour?.name ?? 'Tour'}
                     </Text>
-                </View>
+                </TouchableOpacity>
 
                 {/* rate */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -249,197 +323,40 @@ export default DetailTourBookingScreen = (params) => {
                     </Text>
                 </TouchableOpacity>
 
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        borderRadius: Const.space_12,
-                        justifyContent: 'space-between',
-                        marginHorizontal: 10,
-                        zIndex: 1,
-                    }}
-                >
-                    <TouchableOpacity style={styles.iconBanner}>
-                        <Ionicons name="wifi" size={40} color={AppColors.blueIcon}></Ionicons>
-                        <Text style={styles.txtIconUnity}>{t('Wifi')}</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.iconBanner}>
-                        <Ionicons name="restaurant-outline" size={40} color={AppColors.blueIcon}></Ionicons>
-                        <Text style={styles.txtIconUnity}>{t('Restaurant')}</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.iconBanner}>
-                        <Ionicons name="boat" size={40} color={AppColors.blueIcon}></Ionicons>
-                        <Text style={styles.txtIconUnity}>{t('Boat')}</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.iconBanner}>
-                        <Ionicons name="barbell-outline" size={40} color={AppColors.blueIcon}></Ionicons>
-                        <Text style={styles.txtIconUnity}>{t('Barbell')}</Text>
-                    </TouchableOpacity>
+                <View style={styles.containerTable}>
+                    <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+                        {/* <Row data={state.tableHead} style={styles.headTable} textStyle={styles.textTable} /> */}
+                        <Rows data={state.tableData} textStyle={styles.textTable} />
+                    </Table>
                 </View>
 
-                <View>
-                    <Text style={{ fontSize: 24, fontWeight: 600 }}>{t('Chương trình tour')}</Text>
-
-                    {tour?.schedules?.map((schedule) => {
-                        return (
-                            <View style={{ marginVertical: 5 }}>
-                                <Text style={styles.titleSchedule}>
-                                    <Text style={styles.txtSchedule}>
-                                        {' '}
-                                        {schedule?.timeInDays?.toUpperCase()}: {schedule?.title}
-                                    </Text>
-                                </Text>
-                                {schedule?.scheduleDetail?.length > 0 && (
-                                    <View>
-                                        <View style={styles.containerTable}>
-                                            <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-                                                <Row
-                                                    data={state.tableHead}
-                                                    style={styles.headTable}
-                                                    textStyle={styles.textTable}
-                                                />
-                                                <Rows data={state.tableData} textStyle={styles.textTable} />
-                                            </Table>
-                                        </View>
-                                    </View>
-                                )}
-
-                                {schedule?.task && (
-                                    <View style={styles.containerTableCol}>
-                                        <Text style={[styles.titleLeftSchedule, { color: '#204D7D', fontWeight: 600 }]}>
-                                            {' '}
-                                            {t('Detail')}:
-                                        </Text>
-                                        <Table borderStyle={{ borderWidth: 1, borderColor: '#c8e1ff', marginTop: 10 }}>
-                                            <TableWrapper style={styles.wrapperTableCol}>
-                                                <Col
-                                                    data={[
-                                                        t('Task'),
-                                                        t('Description'),
-                                                        t('Coin'),
-                                                        t('Reward'),
-                                                        t('Deadline'),
-                                                        t('Status'),
-                                                    ]}
-                                                    style={styles.titleTableCol}
-                                                    heightArr={[28, 28]}
-                                                    textStyle={styles.textTableCol}
-                                                />
-                                                <Rows
-                                                    data={[
-                                                        [schedule?.task?.name],
-                                                        [schedule?.task?.description],
-                                                        [schedule?.task?.coin],
-                                                        [schedule?.task?.reward],
-                                                        [schedule?.task?.deadline],
-                                                        [schedule?.task?.status],
-                                                    ]}
-                                                    flexArr={[1, 2]}
-                                                    style={styles.rowTableCol}
-                                                    textStyle={styles.textTableCol}
-                                                />
-                                            </TableWrapper>
-                                        </Table>
-                                    </View>
-                                )}
-
-                                {/* {schedule?.task?.name && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Task')}: </Text>
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.name}</Text>
-                                    </Text>
-                                )}
-                                {schedule?.task?.description && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Description')}: </Text>
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.description}</Text>
-                                    </Text>
-                                )}
-
-                                {schedule?.task?.coin && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Coin')}: </Text>
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.coin}</Text>
-                                    </Text>
-                                )}
-
-                                {schedule?.task?.reward && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Reward')}: </Text>
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.reward}</Text>
-                                    </Text>
-                                )}
-
-                                {schedule?.task?.deadline && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Deadline')}: </Text>{' '}
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.deadline}</Text>
-                                    </Text>
-                                )}
-
-                                {schedule?.task?.status && (
-                                    <Text style={styles.titleSchedule}>
-                                        <Text style={styles.titleLeftSchedule}> {t('Status')}:</Text>
-                                        <Text style={styles.txtSchedule}> {schedule?.task?.status}</Text>
-                                    </Text>
-                                )} */}
-                            </View>
-                        );
-                    })}
-
-                    <Text style={styles.titleSchedule}>{t('Price')}:</Text>
-
-                    <View style={styles.containerTable}>
-                        <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-                            <Row
-                                data={[t('Adult price'), t('Child price'), t('Baby price')]}
-                                style={styles.headTable}
-                                textStyle={styles.textTable}
-                            />
-                            <Rows
-                                data={[[tour?.adultPrice, tour?.childPrice, tour?.babyPrice]]}
-                                textStyle={styles.textTable}
-                            />
-                        </Table>
+                <View
+                    style={{
+                        justifyContent: 'space-between',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginVertical: 20,
+                    }}
+                >
+                    <View>
+                        <Text style={{ color: AppColors.black, fontWeight: 700 }}>{t('Price')}</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 700 }}>
+                            {/* <FontAwesome6 name="hand-holding-dollar" size={30}></FontAwesome6> {tour?.adultPrice ?? 199} */}
+                            {formatCurrency(booking?.total) ?? 0}
+                        </Text>
                     </View>
-
-                    <Text style={styles.titleSchedule}>{t('Departure time')}:</Text>
-                    {tour?.departureTimes?.length > 0 && (
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                gap: 10,
-                                justifyContent: 'space-between',
-                                paddingHorizontal: 40,
-                            }}
-                        >
-                            <Text>{t('Start date')}</Text>
-
-                            <Text>{t('End date')}</Text>
-                        </View>
-                    )}
-                    {tour?.departureTimes?.map((time) => {
-                        return (
-                            <View
-                                style={{
-                                    flexDirection: 'row',
-                                    gap: 10,
-                                    backgroundColor: AppColors.backgroundPrimary,
-                                    justifyContent: 'space-between',
-                                    paddingHorizontal: 40,
-                                    paddingVertical: 5,
-                                    borderColor: '#C4C4C4',
-                                    borderWidth: 1,
-                                    borderRadius: 10,
-                                    marginBottom: 2,
-                                }}
-                            >
-                                <Text style={styles.txtSchedule}>{time?.startDate}</Text>
-                            </View>
-                        );
-                    })}
+                    <ButtonIcon
+                        title={t('Payment')}
+                        fontSize={24}
+                        icon={<Ionicons name="arrow-forward-outline" color={AppColors.white} size={36}></Ionicons>}
+                        width={'60%'}
+                        height={60}
+                        onPress={() => {
+                            console.log('payment');
+                            handlePayment();
+                            // navigatorUtils.navigate('PaymentMethodScreen', { tour: tour });
+                        }}
+                    ></ButtonIcon>
                 </View>
             </ScrollView>
         </View>
@@ -456,8 +373,6 @@ const styles = StyleSheet.create({
         top: 0,
         height: 'auto',
         position: 'relative',
-        marginBottom: 10,
-        paddingBottom: 10,
     },
     iconBanner: {
         padding: 5,
@@ -477,11 +392,11 @@ const styles = StyleSheet.create({
         // width: (Const.fullScreenWidth * 9) / 10,
         // backgroundColor: 'red',
     },
-    containerTable: { flex: 1, padding: 16, backgroundColor: '#fff' },
+    containerTable: { flex: 1, padding: 16 },
     headTable: { height: 40, backgroundColor: '#f1f8ff' },
     textTable: { margin: 6 },
 
-    containerTableCol: { flex: 1, padding: 16, backgroundColor: '#fff' },
+    containerTableCol: { flex: 1, padding: 16 },
     headTableCol: { height: 40, backgroundColor: '#f1f8ff' },
     wrapperTableCol: { flexDirection: 'row' },
     titleTableCol: { flex: 1, backgroundColor: '#f6f8fa' },

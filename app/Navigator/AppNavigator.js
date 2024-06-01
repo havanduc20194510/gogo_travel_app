@@ -17,6 +17,9 @@ import ExploreScreen from '../screens/ExploreScreen';
 import PaymentMethodScreen from '../screens/PaymentMethodScreen';
 import PlaceDetailScreen from '../screens/PlaceDetailScreen';
 import DetailTourBookingScreen from '../screens/DetailTourBookingScreen';
+import ChatBotScreen from '../screens/ChatBotScreen';
+import SavedScreen from '../screens/SavedScreen';
+import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
 
 const AppNavigator = () => {
     const tag = '[AppNavigator]';
@@ -26,6 +29,7 @@ const AppNavigator = () => {
 
     const isLogged = async () => {
         checkLogin(await UserHelper.checkAccessTokenValid());
+        console.log("login: ", login);
     };
     isLogged();
     return (
@@ -34,7 +38,7 @@ const AppNavigator = () => {
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
                 // initialRouteName={'RegisterScreen'}
-                initialRouteName={login ? 'MainTabBar' : 'ExploreScreen'}
+                initialRouteName={login ? 'ExploreScreen' : 'ExploreScreen'}
             >
                 <Stack.Screen
                     name="OnBoardingScreen"
@@ -54,6 +58,9 @@ const AppNavigator = () => {
                 <Stack.Screen name="PlaceDetailScreen" component={PlaceDetailScreen} />
                 <Stack.Screen name="ExploreScreen" component={ExploreScreen} />
                 <Stack.Screen name="PaymentMethodScreen" component={PaymentMethodScreen} />
+                <Stack.Screen name="ChatBotScreen" component={ChatBotScreen} />
+                <Stack.Screen name="SavedScreen" component={SavedScreen} />
+                <Stack.Screen name="PaymentHistoryScreen" component={PaymentHistoryScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

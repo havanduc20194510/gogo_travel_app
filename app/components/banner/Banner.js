@@ -4,6 +4,7 @@ import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Platform } from '
 import AppColors from '../../assets/AppColors';
 import dashboardApi from '../../controllers/api/dashboardApi';
 import _ from 'lodash';
+import navigatorUtils from '../../utils/navigator.utils';
 
 // const ENTRIES1 = [
 //     {
@@ -56,6 +57,7 @@ const Banner = (props) => {
                         title: place?.name,
                         subtitle: place?.name,
                         illustration: place?.images[0]?.url,
+                        place: place,
                     };
                 }),
             );
@@ -73,7 +75,8 @@ const Banner = (props) => {
                 <TouchableOpacity
                     onPress={() => {
                         // handle to screen detail
-                        console.log('abc');
+                        // console.log('abc');
+                        navigatorUtils.navigate('PlaceDetailScreen', { place: item?.place });
                     }}
                 >
                     <ParallaxImage
@@ -114,8 +117,9 @@ const styles = StyleSheet.create({
         height: '100*',
     },
     item: {
-        width: screenWidth - 60,
+        // width: screenWidth - 60,
         // height: screenWidth - 60,
+        width: '100%',
     },
     imageContainer: {
         // flex: 1,
@@ -123,14 +127,15 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.secondary1,
         borderRadius: 8,
         height: 150,
+        width: '100%',
     },
     image: {
         // ...StyleSheet.absoluteFillObject,
-        resizeMode: 'cover',
-        aspectRatio: 1.5,
-        width: screenWidth - 60,
-        height: null,
-        left: 0,
-        right: 0,
+        objectFit: 'cover',
+        // aspectRatio: 1.5,
+        // // width: screenWidth - 60,
+        // height: null,
+        // left: 0,
+        // right: 0,
     },
 });

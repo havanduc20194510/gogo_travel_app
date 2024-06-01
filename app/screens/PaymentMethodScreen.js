@@ -17,6 +17,8 @@ import moment from 'moment';
 import SelectInput from '../components/input/SelectInput';
 import DialogError from '../components/dialog/error/DialogError';
 import GlobalIndicator from '../components/indicator/GlobalIndicator';
+import UserHelper from '../utils/user.helper';
+import { useAccount, useAuth } from '../controllers/hook/AccountHook';
 
 export default PaymentMethodScreen = (params) => {
     const user = useAccount();
@@ -33,9 +35,9 @@ export default PaymentMethodScreen = (params) => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     // const [startDate, setStartDate] = useState(moment().format('YYYY-MM-DD'));
-    const [numberOfAdults, setNumberOfAdults] = useState(0);
-    const [numberOfChildren, setNumberOfChildren] = useState(0);
-    const [numberOfBabies, setNumberOfBabies] = useState(0);
+    const [numberOfAdults, setNumberOfAdults] = useState("");
+    const [numberOfChildren, setNumberOfChildren] = useState("");
+    const [numberOfBabies, setNumberOfBabies] = useState("");
     const [note, setNote] = useState('');
     const [selectDepartureTime, setSelectDepartureTime] = useState();
     const [showError, setShowError] = useState(false);
@@ -43,6 +45,9 @@ export default PaymentMethodScreen = (params) => {
 
     const handleBooking = async () => {
         GlobalIndicator.show(t('Sending'));
+
+        // const isLogged = await UserHelper.checkAccessTokenValid()
+
 
         const data = await bookingApi.create(accessToken, {
             tourId: tour.tourId,
@@ -53,8 +58,10 @@ export default PaymentMethodScreen = (params) => {
             numberOfChildren: numberOfChildren,
             numberOfBabies: numberOfBabies,
             note: note,
-            startDate: selectDepartureTime,
+            startDate: selectDepartureTime.title,
         });
+
+        // console.log("data payment:", data);
 
         if (data?.status === 'error') {
             setShowError(!showError);
@@ -63,6 +70,7 @@ export default PaymentMethodScreen = (params) => {
         } else {
             navigatorUtils.navigate('SavedScreen');
         }
+
         GlobalIndicator.hide();
     };
 
@@ -308,12 +316,11 @@ export default PaymentMethodScreen = (params) => {
                         {/* phone */}
                         <AppTextInput
                             // title={t('Voucher')}
-                            value={searchVoucher}
+                            value={phone}
                             isNumber={true}
                             placeholder={t('Phone')}
                             onChangeText={(text) => {
                                 setPhone(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
@@ -328,13 +335,12 @@ export default PaymentMethodScreen = (params) => {
                         <View style={{ height: 10 }}></View>
                         {/* email */}
                         <AppTextInput
-                            // title={t('Voucher')}
-                            value={searchVoucher}
+                            require={true}
+                            value={email}
                             // isNumber={true}
                             placeholder={t('Email')}
                             onChangeText={(text) => {
                                 setEmail(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
@@ -350,12 +356,11 @@ export default PaymentMethodScreen = (params) => {
                         {/* note */}
                         <AppTextInput
                             // title={t('Voucher')}
-                            value={searchVoucher}
+                            value={note}
                             // isNumber={true}
                             placeholder={t('Note')}
                             onChangeText={(text) => {
                                 setNote(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
@@ -371,12 +376,11 @@ export default PaymentMethodScreen = (params) => {
                         <View style={{ height: 10 }}></View>
                         <AppTextInput
                             // title={t('Voucher')}
-                            value={searchVoucher}
+                            value={numberOfAdults}
                             isNumber={true}
                             placeholder={t('Number adults')}
                             onChangeText={(text) => {
                                 setNumberOfAdults(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
@@ -391,18 +395,16 @@ export default PaymentMethodScreen = (params) => {
                         {/* childr4en */}
                         <View style={{ height: 10 }}></View>
                         <AppTextInput
-                            // title={t('Voucher')}
-                            value={searchVoucher}
+                            value={numberOfChildren}
                             isNumber={true}
                             placeholder={t('Number children')}
                             onChangeText={(text) => {
                                 setNumberOfChildren(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
                             onClear={() => {
-                                setNumberOfChildren('');
+                                setNumberOfChildren("");
                             }}
                             // borColor={AppColors.neutral}
                             // message={''}
@@ -413,12 +415,11 @@ export default PaymentMethodScreen = (params) => {
                         <View style={{ height: 10 }}></View>
                         <AppTextInput
                             // title={t('Voucher')}
-                            value={searchVoucher}
+                            value={numberOfBabies}
                             isNumber={true}
                             placeholder={t('Number babies')}
                             onChangeText={(text) => {
                                 setNumberOfBabies(text);
-                                console.log(searchVoucher);
                             }}
                             // editable={true}
 
@@ -488,8 +489,8 @@ export default PaymentMethodScreen = (params) => {
                         <Text style={{ fontWeight: 700, fontSize: 20 }}>{t('Complete')}</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView>
-        </View>
+            </ScrollView >
+        </View >
     );
 };
 

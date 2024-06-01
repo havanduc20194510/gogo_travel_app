@@ -122,3 +122,4 @@ export function formatCurrency(amount, hideCurrencySign = false) {
         .trim()
         .concat(hideCurrencySign ? '' : ' đ');
 }
+

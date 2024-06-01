@@ -49,8 +49,8 @@ export default HomeScreen = () => {
                 console.log('Location permission denied');
             }
             return;
-        } catch (err) {
-            console.warn(err);
+        } catch (error) {
+            console.warn(error);
         }
     };
 

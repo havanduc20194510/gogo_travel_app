@@ -168,6 +168,7 @@ export default SavedScreen = () => {
                                     total={formatCurrencyK(booking?.total)}
                                     tourName={booking?.tour?.name}
                                     tour={booking?.tour}
+                                    booking={booking}
                                 ></TourCardSaved>
                             );
                         })}

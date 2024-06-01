@@ -23,17 +23,18 @@ const heightWidth = Const.fullScreenHeight;
 export default DetailTourScreen = (params) => {
     const { t } = useTranslation();
     const tour = params?.route?.params?.tour;
+    console.log('tour: ', tour.schedules);
 
     const [desTour, setDesTour] = useState(
-        tour.description.length > 15 ? tour.description.substr(0, 150) : tour.description,
+        tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description,
     );
     const [readMoreIcon, setReadMoreIcon] = useState(false);
 
     const handleReadMore = () => {
         if (readMoreIcon) {
-            setDesTour(tour.description.length > 15 ? tour.description.substr(0, 150) : tour.description);
+            setDesTour(tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description);
         } else {
-            setDesTour(tour.description);
+            setDesTour(tour?.description);
         }
     };
 

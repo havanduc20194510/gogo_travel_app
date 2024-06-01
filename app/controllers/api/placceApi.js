@@ -30,6 +30,12 @@ const placeApi = {
             // { Authorization: `Bearer ${accessToken}` },
         );
     },
+
+    suggestion: async (accessToken, params) => {
+        return await axiosSendRequest('get', env.dev.suggestionUrl.concat(`/suggestions`), params, {
+            Authorization: `Bearer ${accessToken}`,
+        });
+    },
 };
 
 export default placeApi;

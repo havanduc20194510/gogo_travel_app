@@ -118,6 +118,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    //        OneSignal
+    implementation("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
 }
 
 apply from:("../../node_modules/react-native-vector-icons/fonts.gradle");

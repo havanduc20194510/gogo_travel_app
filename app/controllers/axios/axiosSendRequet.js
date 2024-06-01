@@ -65,6 +65,7 @@ export async function axiosSendRequest(
     const config = {
         method: method,
         url: url,
+        responseType: 'json',
     };
 
     if (httpsAgent) {
@@ -94,16 +95,19 @@ export async function axiosSendRequest(
     // console.log('config: ', config);
     await axios(config)
         .then((data) => {
-            // console.log('data: ', data);
-            // data.status = 'success';
             responseData = data;
         })
         .catch((error) => {
-            console.log('Axios Exception: ', JSON.stringify(error?.message));
+            // console.error(error);
+            console.error('Axios Exception:123 ', JSON.stringify(error));
             // console.log('Axios Exception: ', error);
             error.notShowError = notShowError;
-            responseData = { status: 'error', error: error?.message, notShowError };
-            //return axiosMiddleware.handleException(error);
+            responseData = {
+                status: 'error',
+                error: error?.response?.data?.message ?? error?.response?.data?.error,
+                notShowError,
+            };
+            // return axiosMiddleware.handleException(error);
         });
 
     // await axios(config)

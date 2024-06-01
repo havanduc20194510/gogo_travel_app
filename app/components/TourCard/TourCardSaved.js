@@ -15,11 +15,12 @@ export default TourCardSaved = ({
     total,
     bookingDate,
     tourName,
+    booking,
 }) => {
     const { t } = useTranslation();
     const handleNavigateTourDetail = () => {
         // console.log('detail tour');
-        navigatorUtils.navigate('DetailTourBookingScreen', { tour: tour });
+        navigatorUtils.navigate('DetailTourBookingScreen', { tour: tour, booking });
     };
     return (
         <TouchableOpacity

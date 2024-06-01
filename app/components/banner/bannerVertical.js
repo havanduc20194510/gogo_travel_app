@@ -5,6 +5,7 @@ import AppColors from '../../assets/AppColors';
 import dashboardApi from '../../controllers/api/dashboardApi';
 import _ from 'lodash';
 import env from '../../../env.json';
+import navigatorUtils from '../../utils/navigator.utils';
 
 const accessToken = '';
 
@@ -34,7 +35,11 @@ const BannerVertical = (props) => {
     const renderItem = ({ item, index }, parallaxProps) => {
         return (
             <View style={styles.item}>
-                <TouchableOpacity onPress={() => {}}>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigatorUtils.navigate('DetailTourScreen', { tour: item.tour });
+                    }}
+                >
                     <ParallaxImage
                         source={{ uri: item.url }}
                         containerStyle={styles.imageContainer}
@@ -63,6 +68,7 @@ const BannerVertical = (props) => {
                         url:
                             tour?.images[Math.floor(Math.random() * tour?.images?.length)]?.url ??
                             env.dev.defaultImagePlace,
+                        tour: tour,
                     };
                 })}
                 renderItem={renderItem}

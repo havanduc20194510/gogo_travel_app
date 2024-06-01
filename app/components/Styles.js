@@ -61,7 +61,7 @@ export default {
             fontFamily: Font.semiBold,
         },
         titleS24: {
-            color: Assets.Colors.primaryText,
+            color: Assets.Colors.blueIcon,
             fontSize: FontSize.s_24,
             fontWeight: Platform.OS == 'ios' ? '600' : 'bold',
             fontFamily: Font.semiBold,

@@ -51,6 +51,7 @@ const CardProfile = (props) => {
         efficiency,
         price,
         children,
+        user
     } = props;
 
     return (
@@ -68,11 +69,9 @@ const CardProfile = (props) => {
                 justifyContent: 'space-between',
 
                 marginHorizontal: 10,
-                position: 'absolute',
                 zIndex: 1,
                 right: 0,
                 left: 0,
-                marginTop: -10,
             }}
         >
             {/* avatar, name */}
@@ -89,8 +88,8 @@ const CardProfile = (props) => {
                 </View>
                 {/* name. */}
                 <View style={{ width: '70%', alignItems: 'flex-start' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 700 }}>Pham Van A</Text>
-                    <Text style={{ fontSize: 10, fontWeight: 600 }}>Username</Text>
+                    <Text style={{ fontSize: 20, fontWeight: 700 }}>{user?.username ?? user?.email}</Text>
+                    <Text style={{ fontSize: 10, fontWeight: 600 }}>{user?.email ?? user?.username}</Text>
                 </View>
             </View>
 

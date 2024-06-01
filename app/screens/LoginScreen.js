@@ -28,7 +28,6 @@ export default LoginScreen = () => {
     const handleLogin = async () => {
         GlobalIndicator.show(t('Sending'));
         const res = await authApi.signIn(name, pass);
-        console.log('data: ', res);
         if (res?.status === 'error') {
             setShowError(!showError);
             setErrorMessage(res?.error);

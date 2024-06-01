@@ -30,7 +30,7 @@ AppTextInput.propTypes = {
 
 AppTextInput.defaultProps = {
     value: '',
-    onChangeText: () => {},
+    onChangeText: () => { },
     type: '',
     title: '',
     placeholder: '',
@@ -45,7 +45,7 @@ AppTextInput.defaultProps = {
     editable: true,
     titleStyles: {},
     hiddenClear: false,
-    onClear: () => {},
+    onClear: () => { },
     textStyle: undefined,
 };
 
@@ -108,28 +108,7 @@ function AppTextInput({
                 justifyContent: 'center',
             }}
         >
-            {title.length > 0 && (
-                <Text
-                    style={
-                        _.isEmpty(titleStyles)
-                            ? {
-                                  ...Styles.Text.titleInput(),
-                                  lineHeight: 24,
-                                  marginBottom: Const.space_8,
-                                  color: textColor ?? AppColors.ghostwhite,
-                              }
-                            : {
-                                  ...titleStyles,
-                                  lineHeight: 24,
-                                  marginBottom: Const.space_8,
-                                  color: textColor ?? AppColors.ghostwhite,
-                              }
-                    }
-                >
-                    {title}
-                    {require && <Text style={{ color: 'red' }}>*</Text>}
-                </Text>
-            )}
+            {require && !value && <Text style={{ color: 'red', fontSize: 12 }}>Required*</Text>}
             <View>
                 <View
                     style={{
@@ -151,18 +130,18 @@ function AppTextInput({
                         style={[
                             editable
                                 ? {
-                                      flex: 1,
-                                      height: heightInput,
-                                      paddingLeft: 15,
-                                      color: textColor ?? AppColors.ghostwhite,
-                                  }
+                                    flex: 1,
+                                    height: heightInput,
+                                    paddingLeft: 15,
+                                    color: textColor ?? AppColors.ghostwhite,
+                                }
                                 : {
-                                      ...Styles.Text.disableEdit(),
-                                      paddingLeft: 15,
-                                      flex: 1,
-                                      height: heightInput,
-                                      color: textColor ?? AppColors.ghostwhite,
-                                  },
+                                    ...Styles.Text.disableEdit(),
+                                    paddingLeft: 15,
+                                    flex: 1,
+                                    height: heightInput,
+                                    color: textColor ?? AppColors.ghostwhite,
+                                },
                         ]}
                         onFocus={() => {
                             setBorderColor(AppColors.inputFocus);
@@ -193,6 +172,7 @@ function AppTextInput({
                             <Icon name="close" size={20} style={{ color: AppColors.pointPackage }} />
                         </TouchableOpacity>
                     )}
+
                 </View>
             </View>
 
