@@ -57,7 +57,7 @@ export default ChatBotScreen = () => {
             setErrorMessage(data?.error);
         } else {
             data = data?.data?.data ?? data?.data ?? data;
-            setTours(data?.content);
+            setTours(data ?? []);
         }
 
         GlobalIndicator.hide();
@@ -211,30 +211,38 @@ export default ChatBotScreen = () => {
                     );
                 })}
 
-                <TouchableOpacity
-                    style={{
-                        margin: 10,
-                        color: AppColors.blueColor,
-                        alignItems: 'center',
-                        marginVertical: 30,
-                        justifyContent: 'center',
-                    }}
-                    onPress={() => {
-                        handleLoadMore();
-                    }}
-                >
-                    <Text style={{ fontSize: 16, color: '#2f4f4f', fontWeight: 600 }}>
-                        {t('Load more')}
-                        <Ionicons name={'chevron-down-outline'} size={16}></Ionicons>
-                    </Text>
-                </TouchableOpacity>
+                {tours?.length > 0 && (
+                    <TouchableOpacity
+                        style={{
+                            margin: 10,
+                            color: AppColors.blueColor,
+                            alignItems: 'center',
+                            marginVertical: 30,
+                            justifyContent: 'center',
+                        }}
+                        onPress={() => {
+                            handleLoadMore();
+                        }}
+                    >
+                        <Text style={{ fontSize: 16, color: '#2f4f4f', fontWeight: 600 }}>
+                            {t('Load more')}
+                            <Ionicons name={'chevron-down-outline'} size={16}></Ionicons>
+                        </Text>
+                    </TouchableOpacity>
+                )}
             </ScrollView>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: { borderRadius: 8, paddingHorizontal: 8, marginBottom: 20, top: 70 },
+    container: {
+        borderRadius: 8,
+        paddingHorizontal: 8,
+        marginBottom: 20,
+        top: 70,
+        height: Const.fullWindowHeight - 80,
+    },
     txtTitleSearchField: {
         fontSize: 16,
         width: Const.fullScreenWidth / 4,

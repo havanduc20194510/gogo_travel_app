@@ -450,18 +450,19 @@ export default DetailTourScreen = (params) => {
                         marginVertical: 20,
                     }}
                 >
-                    <View>
+                    {/* <View>
                         <Text style={{ color: AppColors.black, fontWeight: 700 }}>{t('Price')}</Text>
                         <Text style={{ fontSize: 20, fontWeight: 700 }}>
-                            {/* <FontAwesome6 name="hand-holding-dollar" size={30}></FontAwesome6> {tour?.adultPrice ?? 199} */}
+                            <FontAwesome6 name="hand-holding-dollar" size={30}></FontAwesome6> {tour?.adultPrice ?? 199}
                             {tour?.adultPrice ?? 199}
                         </Text>
-                    </View>
+                    </View> */}
+
                     <ButtonIcon
                         title={t('Book now')}
                         fontSize={24}
                         icon={<Ionicons name="arrow-forward-outline" color={AppColors.white} size={36}></Ionicons>}
-                        width={'70%'}
+                        // width={'70%'}
                         height={60}
                         onPress={() => {
                             // console.log('book');

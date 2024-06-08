@@ -8,7 +8,7 @@ import Const from '../components/Const';
 import Styles, { shadow } from '../components/Styles';
 import navigatorUtils from '../utils/navigator.utils';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonHasBorderSelect from '../components/buttons/custom/ButtonHasBorderSelect';
 import AppTextInput from '../components/input/AppTextInput';
 import ButtonHasBorderSelectVoucher from '../components/buttons/custom/ButtonHasBorderSelectVoucher';
@@ -35,9 +35,9 @@ export default PaymentMethodScreen = (params) => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     // const [startDate, setStartDate] = useState(moment().format('YYYY-MM-DD'));
-    const [numberOfAdults, setNumberOfAdults] = useState("");
-    const [numberOfChildren, setNumberOfChildren] = useState("");
-    const [numberOfBabies, setNumberOfBabies] = useState("");
+    const [numberOfAdults, setNumberOfAdults] = useState('');
+    const [numberOfChildren, setNumberOfChildren] = useState('');
+    const [numberOfBabies, setNumberOfBabies] = useState('');
     const [note, setNote] = useState('');
     const [selectDepartureTime, setSelectDepartureTime] = useState();
     const [showError, setShowError] = useState(false);
@@ -47,7 +47,6 @@ export default PaymentMethodScreen = (params) => {
         GlobalIndicator.show(t('Sending'));
 
         // const isLogged = await UserHelper.checkAccessTokenValid()
-
 
         const data = await bookingApi.create(accessToken, {
             tourId: tour.tourId,
@@ -74,7 +73,32 @@ export default PaymentMethodScreen = (params) => {
         GlobalIndicator.hide();
     };
 
-    console.log('departureTimes: ', tour?.departureTimes);
+    const [totalPrice, setTotalPrice] = useState(tour?.adultPrice ?? 0);
+
+    const getTotalPriceBooking = async () => {
+        let total = await bookingApi.getTotalBooking(accessToken, {
+            tourId: tour.tourId,
+            numberOfAdults: numberOfAdults === '' ? 0 : numberOfAdults,
+            numberOfChildren: numberOfChildren === '' ? 0 : numberOfChildren,
+            numberOfBabies: numberOfBabies === '' ? 0 : numberOfBabies,
+        });
+
+        total = total?.data?.data ?? total?.data ?? total;
+        console.log('totla: ', total);
+        if (total?.total === 'error') {
+            setShowError(!showError);
+            setMessageError(total?.total);
+            setTotalPrice(0);
+            // console.log('error123123: ', data?.status);
+        } else {
+            setTotalPrice(total ?? 0);
+            // navigatorUtils.navigate('SavedScreen');
+        }
+    };
+    useEffect(() => {
+        getTotalPriceBooking();
+    }, [numberOfAdults, numberOfChildren, numberOfBabies]);
+    // console.log('departureTimes: ', tour?.departureTimes);
 
     return (
         <View>
@@ -124,31 +148,6 @@ export default PaymentMethodScreen = (params) => {
                             {t('Payment method')}
                         </Text>
                         <View></View>
-                    </View>
-
-                    {/* Price */}
-                    <View
-                        style={{
-                            width: (Const.fullScreenWidth * 8) / 10,
-                            alignItems: 'center',
-                            borderColor: 'black',
-                            borderWidth: 1,
-                            borderRadius: 20,
-                            padding: 15,
-                            marginVertical: 10,
-                        }}
-                    >
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                width: '100%',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <Text style={{}}>{t('Price')}</Text>
-                            <FontAwesome5 name="coins" size={20} style={{ color: '#FF0000' }}></FontAwesome5>
-                        </View>
                     </View>
 
                     {/* payment method */}
@@ -242,7 +241,7 @@ export default PaymentMethodScreen = (params) => {
                     </View> */}
 
                     {/* Use coin */}
-                    <View
+                    {/* <View
                         style={{
                             width: (Const.fullScreenWidth * 8) / 10,
                             alignItems: 'center',
@@ -288,7 +287,7 @@ export default PaymentMethodScreen = (params) => {
                             // backgroundColor={'red'}
                             textColor={'#1EDCDC'}
                         ></AppTextInput>
-                    </View>
+                    </View> */}
 
                     {/*  info user */}
                     <View
@@ -404,7 +403,7 @@ export default PaymentMethodScreen = (params) => {
                             // editable={true}
 
                             onClear={() => {
-                                setNumberOfChildren("");
+                                setNumberOfChildren('');
                             }}
                             // borColor={AppColors.neutral}
                             // message={''}
@@ -444,6 +443,34 @@ export default PaymentMethodScreen = (params) => {
                                 borderWidthContainer={1}
                             ></SelectInput>
                         )}
+                    </View>
+
+                    {/* Price */}
+                    <View
+                        style={{
+                            width: (Const.fullScreenWidth * 8) / 10,
+                            alignItems: 'center',
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            padding: 15,
+                            marginVertical: 10,
+                        }}
+                    >
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                width: '100%',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text style={{}}>{t('Price')}</Text>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ marginRight: 10 }}>{totalPrice}</Text>
+                                <FontAwesome5 name="coins" size={20} style={{ color: '#FF0000' }}></FontAwesome5>
+                            </View>
+                        </View>
                     </View>
 
                     {/* QR */}
@@ -489,8 +516,8 @@ export default PaymentMethodScreen = (params) => {
                         <Text style={{ fontWeight: 700, fontSize: 20 }}>{t('Complete')}</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView >
-        </View >
+            </ScrollView>
+        </View>
     );
 };
 

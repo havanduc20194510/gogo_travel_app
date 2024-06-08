@@ -22,6 +22,11 @@ const bookingApi = {
             Authorization: `Bearer ${accessToken}`,
         });
     },
+    getTotalBooking: async (accessToken, params) => {
+        return await axiosSendRequest('get', env.dev.baseUrl.concat('/booking/get-total'), params, {
+            Authorization: `Bearer ${accessToken}`,
+        });
+    },
 };
 
 export default bookingApi;

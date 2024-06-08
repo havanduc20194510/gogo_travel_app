@@ -1,7 +1,7 @@
 import { Linking, StyleSheet, Text, View } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, Switch, TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AppColors from '../assets/AppColors';
 import { Image } from 'react-native';
 import Const from '../components/Const';
@@ -22,6 +22,7 @@ import bookingApi from '../controllers/api/bookingApi';
 import GlobalIndicator from '../components/indicator/GlobalIndicator';
 import DialogError from '../components/dialog/error/DialogError';
 import { useAccount, useAuth } from '../controllers/hook/AccountHook';
+import AppTextInput from '../components/input/AppTextInput';
 
 const screenWidth = Const.fullScreenWidth;
 const heightWidth = Const.fullScreenHeight;
@@ -95,6 +96,7 @@ export default DetailTourBookingScreen = (params) => {
     const [paymentData, setPaymentData] = useState({});
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [useCoin, setUseCoin] = useState(false);
 
     useEffect(() => {
         setPaymentData({
@@ -102,7 +104,7 @@ export default DetailTourBookingScreen = (params) => {
             bankCode: 'NCB',
             total: booking?.total,
             language: 'vn',
-            returnUrl: 'https://gogo-travel-web-git-google-map-havanduc20194510s-projects.vercel.app/payment/check',
+            returnUrl: env.dev.returnUrl,
             coin: false,
         });
     }, []);
@@ -111,10 +113,10 @@ export default DetailTourBookingScreen = (params) => {
         setPaymentData({
             bookingId: booking?.id,
             bankCode: 'NCB',
-            total: booking?.total,
+            total: booking?.total ?? 0,
             language: 'vn',
-            returnUrl: 'https://gogo-travel-web-git-google-map-havanduc20194510s-projects.vercel.app/payment/check',
-            coin: false,
+            returnUrl: env.dev.returnUrl,
+            coin: useCoin,
         });
         GlobalIndicator.show(t('Sending'));
         const res = await bookingApi.paymentBooking(accessToken, paymentData);
@@ -328,6 +330,34 @@ export default DetailTourBookingScreen = (params) => {
                         {/* <Row data={state.tableHead} style={styles.headTable} textStyle={styles.textTable} /> */}
                         <Rows data={state.tableData} textStyle={styles.textTable} />
                     </Table>
+                </View>
+
+                <View style={styles.containerTable}>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                            alignItems: 'center',
+                            marginBottom: 5,
+                        }}
+                    >
+                        <View style={{ bottom: 5 }}>
+                            <Text style={{ fontWeight: 700 }}>{t('Use coin')} </Text>
+                            <Text>{t('(1 coin = 1000 vnd)')}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 5 }}>
+                            <Switch
+                                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                                thumbColor={useCoin ? '#f5dd4b' : '#f4f3f4'}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={() => {
+                                    setUseCoin(!useCoin);
+                                }}
+                                value={useCoin}
+                            />
+                        </View>
+                    </View>
                 </View>
 
                 <View

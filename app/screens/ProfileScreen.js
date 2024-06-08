@@ -15,24 +15,25 @@ import { useAccount } from '../controllers/hook/AccountHook';
 export default ProfileScreen = () => {
     const { t } = useTranslation();
     const user = useAccount();
-    console.log("user: ", user);
+    console.log('user: ', user);
     const handleSetting = () => {
         console.log('handle setting');
     };
     const handleMyTour = () => {
-        navigatorUtils.navigate("SavedScreen")
+        navigatorUtils.navigate('SavedScreen');
         // console.log('handle my tour');
     };
-    const handleFaq = () => {
+    const handleTasks = () => {
         console.log('handle faq');
+        navigatorUtils.navigate('TaskScreen');
     };
     const handlePaymentHistory = () => {
-        navigatorUtils.navigate("PaymentHistoryScreen")
+        navigatorUtils.navigate('PaymentHistoryScreen');
     };
     const handleLogOut = () => {
         console.log('handle log out');
-        UserHelper.signOut()
-        navigatorUtils.navigate("LoginScreen")
+        UserHelper.signOut();
+        navigatorUtils.navigate('LoginScreen');
     };
     return (
         <View style={{}}>
@@ -42,8 +43,7 @@ export default ProfileScreen = () => {
                 }}
                 user={user}
             ></CardProfile>
-            <View style={{ backgroundColor: 'red' }}>
-
+            <View style={{}}>
                 {/* payment history */}
                 <TouchableOpacity
                     onPress={() => {
@@ -71,7 +71,9 @@ export default ProfileScreen = () => {
                     >
                         <Ionicons name="settings-outline" size={26}></Ionicons>
 
-                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>{t("Payment history")}</Text>
+                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>
+                            {t('Payment history')}
+                        </Text>
                         <MaterialIcons name="keyboard-double-arrow-right" size={26}></MaterialIcons>
                     </View>
                 </TouchableOpacity>
@@ -103,14 +105,16 @@ export default ProfileScreen = () => {
                     >
                         <Ionicons name="settings-outline" size={26}></Ionicons>
 
-                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>{t("Booking history")}</Text>
+                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>
+                            {t('Booking history')}
+                        </Text>
                         <MaterialIcons name="keyboard-double-arrow-right" size={26}></MaterialIcons>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     onPress={() => {
-                        handleFaq();
+                        handleTasks();
                     }}
                 >
                     <View
@@ -134,7 +138,7 @@ export default ProfileScreen = () => {
                     >
                         <Ionicons name="settings-outline" size={26}></Ionicons>
 
-                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>FAQs</Text>
+                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>Tasks</Text>
                         <MaterialIcons name="keyboard-double-arrow-right" size={26}></MaterialIcons>
                     </View>
                 </TouchableOpacity>
@@ -165,11 +169,10 @@ export default ProfileScreen = () => {
                     >
                         <Ionicons name="settings-outline" size={26}></Ionicons>
 
-                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>{t("Log out")}</Text>
+                        <Text style={{ fontSize: 18, fontWeight: 700, alignItems: 'center' }}>{t('Log out')}</Text>
                         <MaterialIcons name="keyboard-double-arrow-right" size={26}></MaterialIcons>
                     </View>
                 </TouchableOpacity>
-
             </View>
         </View>
     );

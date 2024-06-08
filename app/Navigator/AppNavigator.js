@@ -20,25 +20,29 @@ import DetailTourBookingScreen from '../screens/DetailTourBookingScreen';
 import ChatBotScreen from '../screens/ChatBotScreen';
 import SavedScreen from '../screens/SavedScreen';
 import PaymentHistoryScreen from '../screens/PaymentHistoryScreen';
+import TaskScreen from '../screens/TaskScreen';
+import SearchHeader from '../components/header/SearchHeader';
+import { useTranslation } from 'react-i18next';
 
 const AppNavigator = () => {
     const tag = '[AppNavigator]';
     enableScreens();
     const Stack = createStackNavigator();
-    const [login, checkLogin] = useState(true);
+    const [login, checkLogin] = useState(false);
 
     const isLogged = async () => {
         checkLogin(await UserHelper.checkAccessTokenValid());
-        console.log("login: ", login);
+        console.log('login: ', login);
     };
     isLogged();
+    const { t } = useTranslation();
     return (
         <NavigationContainer ref={rootNavigationRef}>
             <GlobalComponent />
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
                 // initialRouteName={'RegisterScreen'}
-                initialRouteName={login ? 'ExploreScreen' : 'ExploreScreen'}
+                initialRouteName={login ? 'MainTabBar' : 'ExploreScreen'}
             >
                 <Stack.Screen
                     name="OnBoardingScreen"
@@ -61,6 +65,11 @@ const AppNavigator = () => {
                 <Stack.Screen name="ChatBotScreen" component={ChatBotScreen} />
                 <Stack.Screen name="SavedScreen" component={SavedScreen} />
                 <Stack.Screen name="PaymentHistoryScreen" component={PaymentHistoryScreen} />
+                <Stack.Screen
+                    name="TaskScreen"
+                    component={TaskScreen}
+                    // options={{ header: <SearchHeader title={t('header')}></SearchHeader> }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -79,16 +79,12 @@ export default PaymentHistoryScreen = () => {
                 </View>
             </View>
 
-            <ScrollView>
-
-                <View style={{ marginHorizontal: 10, top: 100, height: Const.fullScreenHeight }}>
-                    {paymentHistories.map((paymentHistory) => {
-                        return (
-                            <PaymentCardHistory paymentHistory={paymentHistory}></PaymentCardHistory>
-                        );
-                    })}
-                </View>
-
+            <ScrollView
+                style={{ marginHorizontal: 10, top: 100, height: Const.fullScreenHeight - 150, marginBottom: 20 }}
+            >
+                {paymentHistories.map((paymentHistory) => {
+                    return <PaymentCardHistory paymentHistory={paymentHistory}></PaymentCardHistory>;
+                })}
             </ScrollView>
         </View>
     );
@@ -104,6 +100,7 @@ const styles = StyleSheet.create({
         top: 0,
         height: 'auto',
         position: 'relative',
+        // height: Const.fullWindowHeight - 80,
     },
     iconHeader: {
         width: 50,

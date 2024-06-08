@@ -250,7 +250,7 @@ export default BookingScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    container: { borderRadius: 8, paddingHorizontal: 8, marginBottom: 20 },
+    container: { borderRadius: 8, paddingHorizontal: 8, marginBottom: 20, height: Const.fullWindowHeight - 80 },
     txtTitleSearchField: {
         fontSize: 16,
         width: Const.fullScreenWidth / 4,

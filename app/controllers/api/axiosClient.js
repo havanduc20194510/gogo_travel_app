@@ -10,7 +10,7 @@ const sTag = "[AxiosClient]";
 // Tham khao: `https://github.com/axios/axios#request-config`
 // de xem chi tiet
 const axiosClient = axios.create({
-  baseURL: "http://192.168.56.1:4371/api/v1",
+  baseURL: "http://192.168.56.1:1234/api/v1",
   timeout: 100000,
   headers: { "content-type": "application/json" },
 });

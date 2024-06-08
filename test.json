@@ -1,126 +1,166 @@
 {
-    "status": "error",
-    "error": {
-        "data": { "error": "Missing location parameter" },
-        "status": 400,
-        "headers": {
-            "cache-control": "public, max-age=0, must-revalidate",
-            "content-type": "text/plain;charset=UTF-8",
-            "date": "Wed, 29 May 2024 02:01:40 GMT",
-            "server": "Vercel",
-            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
-            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
-            "x-matched-path": "/api/suggestions",
-            "x-vercel-cache": "BYPASS",
-            "x-vercel-execution-region": "iad1",
-            "x-vercel-id": "hkg1::iad1::2k65k-1716948099921-c9bedf02c722"
+    "data": [
+        {
+            "location": " Bowling Alley",
+            "description": "Bowling Alley tại 123 là điểm đến lý tưởng cho những ai yêu thích môn thể thao bowling và muốn thử thách kỹ năng của mình.",
+            "img": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-waR2koE9LMUXOTRObxTSyv1v.png?st=2024-06-03T14%3A34%3A24Z&se=2024-06-03T16%3A34%3A24Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T00%3A18%3A33Z&ske=2024-06-04T00%3A18%3A33Z&sks=b&skv=2023-11-03&sig=7bG3IRUbB51Jiq/7dzWd%2BUMso40j1E5SGZrz/byfcrY%3D"
         },
-        "config": {
-            "transitional": { "silentJSONParsing": true, "forcedJSONParsing": true, "clarifyTimeoutError": false },
-            "adapter": ["xhr", "http"],
-            "transformRequest": [null],
-            "transformResponse": [null],
-            "timeout": 0,
-            "xsrfCookieName": "XSRF-TOKEN",
-            "xsrfHeaderName": "X-XSRF-TOKEN",
-            "maxContentLength": -1,
-            "maxBodyLength": -1,
-            "env": {},
-            "headers": {
-                "Accept": "application/json, text/plain, */*",
-                "Accept-Encoding": "gzip",
-                "User-Agent": "mobile",
-                "Authorization": "Bearer "
-            },
-            "method": "get",
-            "url": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=&time=&activity=&pageSize=10",
-            "responseType": "json"
+        {
+            "location": " Karaoke Bar",
+            "description": "Karaoke Bar tại 123 là nơi thích hợp để bạn và bạn bè cùng hát hò, vui chơi và tận hưởng không khí sôi động.",
+            "img": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-HHavfadWl9UlmLYCA8ZFSj92.png?st=2024-06-03T14%3A34%3A31Z&se=2024-06-03T16%3A34%3A31Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T15%3A02%3A55Z&ske=2024-06-04T15%3A02%3A55Z&sks=b&skv=2023-11-03&sig=jWnMZU0exwKCeLCeqZ5rreXPcmxGvWKfgEKJGJjc7eo%3D"
         },
-        "request": {
-            "UNSENT": 0,
-            "OPENED": 1,
-            "HEADERS_RECEIVED": 2,
-            "LOADING": 3,
-            "DONE": 4,
-            "readyState": 4,
-            "status": 400,
-            "timeout": 0,
-            "withCredentials": true,
-            "upload": {},
-            "_aborted": false,
-            "_hasError": false,
-            "_method": "GET",
-            "_perfKey": "network_XMLHttpRequest_https://gogo-travel-web-eta.vercel.app/api/suggestions?location=&time=&activity=&pageSize=10",
-            "_response": "{\"error\":\"Missing location parameter\"}",
-            "_url": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=&time=&activity=&pageSize=10",
-            "_timedOut": false,
-            "_trackingName": "unknown",
-            "_incrementalEvents": false,
-            "_performanceLogger": {
-                "_timespans": {
-                    "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/tour/top-tour?": {
-                        "startTime": 2608484.9011,
-                        "endTime": 2608768.6927,
-                        "totalTime": 283.79160000011325
-                    },
-                    "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/places/top-recommend?": {
-                        "startTime": 2608488.7993,
-                        "endTime": 2608881.0794,
-                        "totalTime": 392.2801000000909
-                    },
-                    "network_XMLHttpRequest_http://10.0.2.2:8081/symbolicate": {
-                        "startTime": 2608637.5038,
-                        "endTime": 2608765.4926,
-                        "totalTime": 127.98879999993369
-                    },
-                    "network_XMLHttpRequest_https://gogo-travel-web-eta.vercel.app/api/suggestions?location=&time=&activity=&pageSize=10": {
-                        "startTime": 2641464.6124,
-                        "endTime": 2641918.8069,
-                        "totalTime": 454.19450000021607
-                    }
-                },
-                "_extras": {},
-                "_points": { "initializeCore_start": 2606782.7763, "initializeCore_end": 2607177.0226 },
-                "_pointExtras": {},
-                "_closed": false,
-                "_isLoggingForWebPerformance": false
-            },
-            "responseHeaders": {
-                "x-vercel-id": "hkg1::iad1::2k65k-1716948099921-c9bedf02c722",
-                "x-matched-path": "/api/suggestions",
-                "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
-                "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
-                "server": "Vercel",
-                "x-vercel-cache": "BYPASS",
-                "content-type": "text/plain;charset=UTF-8",
-                "cache-control": "public, max-age=0, must-revalidate",
-                "date": "Wed, 29 May 2024 02:01:40 GMT",
-                "x-vercel-execution-region": "iad1"
-            },
-            "_requestId": null,
-            "_headers": {
-                "accept": "application/json, text/plain, */*",
-                "accept-encoding": "gzip",
-                "user-agent": "mobile",
-                "authorization": "Bearer "
-            },
-            "_responseType": "",
-            "_sent": true,
-            "_lowerCaseResponseHeaders": {
-                "x-vercel-id": "hkg1::iad1::2k65k-1716948099921-c9bedf02c722",
-                "x-matched-path": "/api/suggestions",
-                "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
-                "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
-                "server": "Vercel",
-                "x-vercel-cache": "BYPASS",
-                "content-type": "text/plain;charset=UTF-8",
-                "cache-control": "public, max-age=0, must-revalidate",
-                "date": "Wed, 29 May 2024 02:01:40 GMT",
-                "x-vercel-execution-region": "iad1"
-            },
-            "_subscriptions": [],
-            "responseURL": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=&time=&activity=&pageSize=10"
+        {
+            "location": " Game Center",
+            "description": "Game Center tại 123 là điểm đến lý tưởng cho những ai đam mê game và muốn thử thách kỹ năng chơi game của mình.",
+            "img": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-4tc3tmcKTBxpK76FqKsB3zAN.png?st=2024-06-03T14%3A34%3A40Z&se=2024-06-03T16%3A34%3A40Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-02T23%3A44%3A06Z&ske=2024-06-03T23%3A44%3A06Z&sks=b&skv=2023-11-03&sig=%2Bt/u34MtFwbi0DVEaR8rgS2ZbB4BBUAHY6gIkywAhBQ%3D"
+        },
+        {
+            "location": " Water Park",
+            "description": "Water Park tại 123 là nơi lý tưởng để bạn thư giãn và vui chơi trong những trò chơi nước hấp dẫn và sôi động.\"",
+            "img": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-RA4IgUcDIDpVmS98w72M10kt.png?st=2024-06-03T14%3A34%3A48Z&se=2024-06-03T16%3A34%3A48Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T15%3A00%3A38Z&ske=2024-06-04T15%3A00%3A38Z&sks=b&skv=2023-11-03&sig=nbWSLV8boi%2BkniFnsQ2URKcfmI6Dq06WJlGDDRcO5Kw%3D"
         }
+    ],
+    "status": 200,
+    "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-encoding": "gzip",
+        "content-type": "application/json",
+        "date": "Mon, 03 Jun 2024 15:34:48 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
+        "x-matched-path": "/api/suggestions",
+        "x-vercel-cache": "BYPASS",
+        "x-vercel-execution-region": "iad1",
+        "x-vercel-id": "hkg1::iad1::mss96-1717428850052-ca7e92e22ded"
     },
-    "notShowError": false
+    "config": {
+        "transitional": { "silentJSONParsing": true, "forcedJSONParsing": true, "clarifyTimeoutError": false },
+        "adapter": ["xhr", "http"],
+        "transformRequest": [null],
+        "transformResponse": [null],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {},
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Encoding": "gzip",
+            "User-Agent": "mobile",
+            "Authorization": "Bearer "
+        },
+        "method": "get",
+        "url": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=123&time=32&activity=fs&pageSize=10",
+        "responseType": "json"
+    },
+    "request": {
+        "UNSENT": 0,
+        "OPENED": 1,
+        "HEADERS_RECEIVED": 2,
+        "LOADING": 3,
+        "DONE": 4,
+        "readyState": 4,
+        "status": 200,
+        "timeout": 0,
+        "withCredentials": true,
+        "upload": {},
+        "_aborted": false,
+        "_hasError": false,
+        "_method": "GET",
+        "_perfKey": "network_XMLHttpRequest_https://gogo-travel-web-eta.vercel.app/api/suggestions?location=123&time=32&activity=fs&pageSize=10",
+        "_response": "[{\"location\":\" Bowling Alley\",\"description\":\"Bowling Alley tại 123 là điểm đến lý tưởng cho những ai yêu thích môn thể thao bowling và muốn thử thách kỹ năng của mình.\",\"img\":\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-waR2koE9LMUXOTRObxTSyv1v.png?st=2024-06-03T14%3A34%3A24Z&se=2024-06-03T16%3A34%3A24Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T00%3A18%3A33Z&ske=2024-06-04T00%3A18%3A33Z&sks=b&skv=2023-11-03&sig=7bG3IRUbB51Jiq/7dzWd%2BUMso40j1E5SGZrz/byfcrY%3D\"},{\"location\":\" Karaoke Bar\",\"description\":\"Karaoke Bar tại 123 là nơi thích hợp để bạn và bạn bè cùng hát hò, vui chơi và tận hưởng không khí sôi động.\",\"img\":\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-HHavfadWl9UlmLYCA8ZFSj92.png?st=2024-06-03T14%3A34%3A31Z&se=2024-06-03T16%3A34%3A31Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T15%3A02%3A55Z&ske=2024-06-04T15%3A02%3A55Z&sks=b&skv=2023-11-03&sig=jWnMZU0exwKCeLCeqZ5rreXPcmxGvWKfgEKJGJjc7eo%3D\"},{\"location\":\" Game Center\",\"description\":\"Game Center tại 123 là điểm đến lý tưởng cho những ai đam mê game và muốn thử thách kỹ năng chơi game của mình.\",\"img\":\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-4tc3tmcKTBxpK76FqKsB3zAN.png?st=2024-06-03T14%3A34%3A40Z&se=2024-06-03T16%3A34%3A40Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-02T23%3A44%3A06Z&ske=2024-06-03T23%3A44%3A06Z&sks=b&skv=2023-11-03&sig=%2Bt/u34MtFwbi0DVEaR8rgS2ZbB4BBUAHY6gIkywAhBQ%3D\"},{\"location\":\" Water Park\",\"description\":\"Water Park tại 123 là nơi lý tưởng để bạn thư giãn và vui chơi trong những trò chơi nước hấp dẫn và sôi động.\\\"\",\"img\":\"https://oaidalleapiprodscus.blob.core.windows.net/private/org-9a5Xsclp8r4nXPk145UY1eBy/mytravel-app-key/img-RA4IgUcDIDpVmS98w72M10kt.png?st=2024-06-03T14%3A34%3A48Z&se=2024-06-03T16%3A34%3A48Z&sp=r&sv=2023-11-03&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-06-03T15%3A00%3A38Z&ske=2024-06-04T15%3A00%3A38Z&sks=b&skv=2023-11-03&sig=nbWSLV8boi%2BkniFnsQ2URKcfmI6Dq06WJlGDDRcO5Kw%3D\"}]",
+        "_url": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=123&time=32&activity=fs&pageSize=10",
+        "_timedOut": false,
+        "_trackingName": "unknown",
+        "_incrementalEvents": false,
+        "_performanceLogger": {
+            "_timespans": {
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/tour/top-tour?": {
+                    "startTime": 1482218.195642,
+                    "endTime": 1482713.748332,
+                    "totalTime": 495.55269000004046
+                },
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/places/top-recommend?": {
+                    "startTime": 1482221.538965,
+                    "endTime": 1482543.532918,
+                    "totalTime": 321.9939529998228
+                },
+                "network_XMLHttpRequest_http://10.0.2.2:8081/symbolicate": {
+                    "startTime": 1482315.065037,
+                    "endTime": 1482709.417796,
+                    "totalTime": 394.35275899991393
+                },
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/auth/token": {
+                    "startTime": 1498911.139353,
+                    "endTime": 1499221.191146,
+                    "totalTime": 310.05179299996234
+                },
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/booking/get-by-user/7163a7a7-1b4b-4a72-aeee-086e2b8552ba": {
+                    "startTime": 1503767.031088,
+                    "endTime": 1503892.468054,
+                    "totalTime": 125.43696600012481
+                },
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/payment/vn-pay/submit?bookingId=33585abc-66d5-47db-a318-ff30756db83f&bankCode=NCB&total=17980000&language=vn&returnUrl=https://gogo-travel-web-eta.vercel.app/payment/check&coin=false": {
+                    "startTime": 1513995.771495,
+                    "endTime": 1514218.388543,
+                    "totalTime": 222.61704799998552
+                },
+                "network_XMLHttpRequest_http://gogotravel.ap-southeast-1.elasticbeanstalk.com/payment/vn-pay/submit?bookingId=33585abc-66d5-47db-a318-ff30756db83f&bankCode=NCB&total=17980000&language=vn&returnUrl=https://gogo-travel-web-eta.vercel.app/payment/check&coin=true": {
+                    "startTime": 1686359.505418,
+                    "endTime": 1686910.579267,
+                    "totalTime": 551.0738490000367
+                },
+                "network_XMLHttpRequest_https://gogo-travel-web-eta.vercel.app/api/suggestions?location=123&time=32&activity=fs&pageSize=10": {
+                    "startTime": 2415913.323708,
+                    "endTime": 2454932.115901,
+                    "totalTime": 39018.79219299974
+                }
+            },
+            "_extras": {},
+            "_points": { "initializeCore_start": 1480572.33139, "initializeCore_end": 1480877.533904 },
+            "_pointExtras": {},
+            "_closed": false,
+            "_isLoggingForWebPerformance": false
+        },
+        "responseHeaders": {
+            "x-vercel-id": "hkg1::iad1::mss96-1717428850052-ca7e92e22ded",
+            "content-type": "application/json",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
+            "server": "Vercel",
+            "date": "Mon, 03 Jun 2024 15:34:48 GMT",
+            "content-encoding": "gzip",
+            "x-matched-path": "/api/suggestions",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-execution-region": "iad1"
+        },
+        "_requestId": null,
+        "_headers": {
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip",
+            "user-agent": "mobile",
+            "authorization": "Bearer "
+        },
+        "_responseType": "",
+        "_sent": true,
+        "_lowerCaseResponseHeaders": {
+            "x-vercel-id": "hkg1::iad1::mss96-1717428850052-ca7e92e22ded",
+            "content-type": "application/json",
+            "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch",
+            "server": "Vercel",
+            "date": "Mon, 03 Jun 2024 15:34:48 GMT",
+            "content-encoding": "gzip",
+            "x-matched-path": "/api/suggestions",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-execution-region": "iad1"
+        },
+        "_subscriptions": [],
+        "responseURL": "https://gogo-travel-web-eta.vercel.app/api/suggestions?location=123&time=32&activity=fs&pageSize=10"
+    }
 }

@@ -9,7 +9,7 @@ export default PlaceSuggestionByChatBot = ({ image, name, description, tour }) =
     const handleNavigateTourDetail = () => {
         // console.log('detail tour');
         // navigatorUtils.navigate('DetailTourScreen', { tour: tour });
-        Linking.openURL('https://www.google.com/maps/search/?api=1&query=Hanoi');
+        Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${tour?.location}`);
         // const latitude = '40.7127753';
         // const longitude = '-74.0059728';
         // const label = 'New York, NY, USA';
