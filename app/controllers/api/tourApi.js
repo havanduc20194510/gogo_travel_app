@@ -53,6 +53,27 @@ const tourApi = {
             // { Authorization: `Bearer ${accessToken}` },
         );
     },
+    star: async (accessToken, tourId) => {
+        return await axiosSendRequest(
+            'get',
+            env.dev.baseUrl.concat(`/tour-reviews/average-rating/${tourId}`),
+            {},
+            { Authorization: `Bearer ${accessToken}` },
+        );
+    },
+    rating: async (accessToken, { tourId, userId, content, rating }) => {
+        return await axiosSendRequest(
+            'post',
+            env.dev.baseUrl.concat('/tour-reviews/create'),
+            {
+                tourId,
+                userId,
+                content,
+                rating,
+            },
+            // { Authorization: `Bearer ${accessToken}` },
+        );
+    },
 };
 
 export default tourApi;

@@ -1,13 +1,4 @@
-import AppColors from 'app/assets/AppColors';
-import Const from 'app/shared/const/Const';
-import React, {
-  createRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -18,13 +9,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {ConfirmDialogProps} from './types';
+import { ConfirmDialogProps } from './types';
 import _ from 'lodash';
-import Styles, {FontSize} from 'app/shared/Styles';
-import {store} from 'app/controllers/redux/AppStore';
-import {setForceCloseModal} from 'app/controllers/slice/ModalSlice';
-import HighlightTouchable from 'app/shared/components/buttons/custom/HighlightTouchable';
-import AppIcons from '../../../../assets/AppIcons';
+// import Styles, {FontSize} from 'app/shared/Styles';
+import { store } from 'app/controllers/redux/AppStore';
+import { setForceCloseModal } from 'app/controllers/slice/ModalSlice';
+import Const from '../../Const';
+import AppColors from '../../../assets/AppColors';
+import { FontSize } from '../../Styles';
+import AppIcons from '../../../assets/AppIcons';
+// import HighlightTouchable from 'app/shared/components/buttons/custom/HighlightTouchable';
 
 const TouchableOpacity = RNTouchableOpacity;
 const tag = '[ConfirmDialog]';
@@ -38,9 +32,7 @@ const tag = '[ConfirmDialog]';
  * @param {boolean} param.forceClose
  *
  */
-const ConfirmDialog = ({dialogRef, forceClose}) => {
-  const icons = AppIcons;
-  const colors = AppColors;
+const ConfirmDialog = ({ dialogRef, forceClose }) => {
   const [visible, setVisible] = useState(false);
   const animHeight = useRef(new Animated.Value(Const.fullScreenHeight)).current;
 
@@ -53,17 +45,17 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
     }
   }, [forceClose, visible]);
 
-  useEffect(() => {
-    if (!visible) {
-      store?.dispatch(
-        setForceCloseModal({
-          scaleToast: false,
-          alert: false,
-          indicator: false,
-        }),
-      );
-    }
-  }, [visible]);
+  // useEffect(() => {
+  //   if (!visible) {
+  //     store?.dispatch(
+  //       setForceCloseModal({
+  //         scaleToast: false,
+  //         alert: false,
+  //         indicator: false,
+  //       }),
+  //     );
+  //   }
+  // }, [visible]);
 
   /*  */
   /**
@@ -111,7 +103,7 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
 
   useEffect(() => {
     if (visible) {
-      slideInFromBottom.start(({finished}) => {
+      slideInFromBottom.start(({ finished }) => {
         if (finished) {
           console.log(tag, 'opened', props);
           if (_.isFunction(props.onOpen)) {
@@ -141,9 +133,7 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
           onOpen: undefined,
           ...props,
           dismissable:
-            props.dismissable !== undefined && props.dismissable !== null
-              ? !!props.dismissable
-              : true,
+            props.dismissable !== undefined && props.dismissable !== null ? !!props.dismissable : true,
         });
         if (props.message && props.title) {
           setTimeout(() => setVisible(!forceClose && true));
@@ -163,7 +153,7 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
     (isDismiss = true) => {
       isDismiss = !!isDismiss;
 
-      hideToBottom.start(({finished}) => {
+      hideToBottom.start(({ finished }) => {
         if (isDismiss && _.isFunction(props.onDimiss)) {
           props.onDimiss();
         }
@@ -179,24 +169,28 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
       visible={visible && !forceClose}
       statusBarTranslucent
       presentationStyle="overFullScreen"
-      onRequestClose={props.dismissable ? onDismiss : () => {}}
-      transparent>
+      onRequestClose={props.dismissable ? onDismiss : () => { }}
+      transparent
+    >
       <View
         style={{
           backgroundColor: 'rgba(0,0,0,0.3)',
           flex: 1,
-        }}>
+        }}
+      >
         <TouchableWithoutFeedback
-          onPress={props.dismissable ? onDismiss : () => {}}
+          onPress={props.dismissable ? onDismiss : () => { }}
           style={{
             flex: 1,
-          }}>
+          }}
+        >
           <View
             style={{
               flex: 1,
               width: '100%',
               height: '100%',
-            }}>
+            }}
+          >
             <TouchableWithoutFeedback>
               <Animated.View
                 style={{
@@ -207,7 +201,8 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                     },
                   ],
                   marginHorizontal: Const.space_14,
-                }}>
+                }}
+              >
                 <View
                   style={[
                     {
@@ -221,7 +216,8 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                       width: '100%',
                       flexShrink: 1,
                     },
-                  ]}>
+                  ]}
+                >
                   {/* title */}
                   {props.title ? (
                     <Text
@@ -237,7 +233,8 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                           fontWeight: '700',
                         },
                         props.titleStyle,
-                      ]}>
+                      ]}
+                    >
                       {props.title}
                     </Text>
                   ) : null}
@@ -251,7 +248,8 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                         marginTop: Const.space_16,
                         flexShrink: 1,
                       },
-                    ]}>
+                    ]}
+                  >
                     {_.isString(props.message) && !_.isEmpty(props.message) ? (
                       <Text
                         numberOfLines={7}
@@ -264,7 +262,8 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                             textAlign: 'center',
                           },
                           props.messageStyle,
-                        ]}>
+                        ]}
+                      >
                         {props.message}
                       </Text>
                     ) : null}
@@ -279,14 +278,13 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                       justifyContent: 'space-around',
                       paddingHorizontal: Const.space_16,
                       marginTop: Const.space_24,
-                    }}>
+                    }}
+                  >
                     {_.isArray(props.options) &&
                       props.options.length &&
                       props.options.map((option, index, arr) => {
                         let TouchableWrapper =
-                          option.type == 'cancel'
-                            ? HighlightTouchable
-                            : TouchableOpacity;
+                          option.type == 'cancel' ? HighlightTouchable : TouchableOpacity;
                         return (
                           <TouchableWrapper
                             delayPressIn={1}
@@ -305,18 +303,19 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                                 borderRadius: Const.space_22,
                               },
                               !option.type || option.type == 'default'
-                                ? {backgroundColor: colors.primary}
+                                ? { backgroundColor: AppColors.primary }
                                 : undefined,
                               option.type == 'cancel'
                                 ? {
-                                    borderColor: colors.primary,
-                                    borderWidth: Const.space_1,
-                                  }
+                                  borderColor: colors.primary,
+                                  borderWidth: Const.space_1,
+                                }
                                 : undefined,
                               index <= arr.length - 1 && index > 0
-                                ? {marginTop: Const.space_10}
+                                ? { marginTop: Const.space_10 }
                                 : undefined,
-                            ]}>
+                            ]}
+                          >
                             <Text
                               style={[
                                 Styles.Text.primary,
@@ -328,15 +327,16 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                                   fontWeight: '600',
                                 },
                                 !option.type || option.type == 'default'
-                                  ? {color: AppColors.white}
+                                  ? { color: AppColors.white }
                                   : undefined,
                                 option.type == 'cancel'
                                   ? {
-                                      color: AppColors.primary,
-                                    }
+                                    color: AppColors.primary,
+                                  }
                                   : undefined,
                                 option.titleStyle,
-                              ]}>
+                              ]}
+                            >
                               {option.title}
                             </Text>
                           </TouchableWrapper>
@@ -353,11 +353,9 @@ const ConfirmDialog = ({dialogRef, forceClose}) => {
                     top: Const.space_20,
                     right: Const.space_24,
                     display: props.dismissable ? 'flex' : 'none',
-                  }}>
-                  <Image
-                    source={icons.icClose}
-                    style={{width: 22, height: 22}}
-                  />
+                  }}
+                >
+                  <Image source={AppIcons.icDot} style={{ width: 22, height: 22 }} />
                 </TouchableOpacity>
               </Animated.View>
             </TouchableWithoutFeedback>

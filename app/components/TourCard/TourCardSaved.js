@@ -3,6 +3,13 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import AppColors from '../../assets/AppColors';
 import navigatorUtils from '../../utils/navigator.utils';
 import { useTranslation } from 'react-i18next';
+import GlobalIndicator from '../indicator/GlobalIndicator';
+import tourApi from '../../controllers/api/tourApi';
+import { useAccount, useAuth } from '../../controllers/hook/AccountHook';
+import { useState } from 'react';
+import DialogError from '../dialog/error/DialogError';
+// import ConfirmDialog from '../dialog/confirm/ConfirmDialog';
+import Dialog from 'react-native-dialog';
 
 export default TourCardSaved = ({
     image,
@@ -18,9 +25,46 @@ export default TourCardSaved = ({
     booking,
 }) => {
     const { t } = useTranslation();
+    const user = useAccount();
+    const accessToken = useAuth();
+
+    const [content, setContent] = useState('');
+    const [rating, setRating] = useState(5);
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [modalRating, setModalRating] = useState(false);
+
+    const handleReview = async () => {
+        GlobalIndicator.show(t('Handling review'), 'circle');
+        let data = await tourApi.rating(accessToken, {
+            tourId: tour?.tourId,
+            userId: user?.id,
+            content: content,
+            rating: rating,
+        });
+        // console.log('  data: ', JSON.stringify(data));
+        if (data?.status === 'error') {
+            setShowError(!showError);
+            setErrorMessage(data?.error);
+            setModalRating(!modalRating);
+        } else {
+            setModalRating(!modalRating);
+        }
+
+        GlobalIndicator.hide();
+        // console.log('tours: ', tours);
+    };
     const handleNavigateTourDetail = () => {
-        // console.log('detail tour');
-        navigatorUtils.navigate('DetailTourBookingScreen', { tour: tour, booking });
+        if (booking?.status === 'CONFIRMED') {
+            setModalRating(!modalRating);
+            console.log('modalRating', modalRating);
+        } else {
+            console.log('detail tour');
+            navigatorUtils.navigate('DetailTourBookingScreen', { tour: tour, booking });
+        }
+
+        // console.log('tour: ', JSON.stringify(tour));
+        // console.log('bookings: ', JSON.stringify(booking));
     };
     return (
         <TouchableOpacity
@@ -29,6 +73,51 @@ export default TourCardSaved = ({
                 handleNavigateTourDetail();
             }}
         >
+            {showError && (
+                <DialogError
+                    setVisible={setShowError}
+                    visible={showError}
+                    labelCancel={'Cancel'}
+                    labelOk={'OK'}
+                    title={t('Review failed')}
+                    description={errorMessage}
+                ></DialogError>
+            )}
+
+            {true && (
+                <Dialog.Container visible={modalRating}>
+                    <Dialog.Title>Reviews</Dialog.Title>
+                    <Dialog.Input
+                        placeholder="Your reviews"
+                        onChangeText={(text) => {
+                            console.log('e revierw: ', text);
+                            setContent(text);
+                        }}
+                    ></Dialog.Input>
+                    <Dialog.Input
+                        placeholder="Star"
+                        keyboardType="number-pad"
+                        onChangeText={(value) => {
+                            let num = isNaN(parseInt(value)) ? 5 : parseInt(value);
+                            setRating(num >= 5 ? 5 : num <= 0 ? 0 : 5);
+
+                            console.log('user: ', user);
+                        }}
+                    ></Dialog.Input>
+                    <Dialog.Button
+                        label="Send"
+                        onPress={() => {
+                            handleReview();
+                        }}
+                    />
+                    <Dialog.Button
+                        label="Cancel"
+                        onPress={() => {
+                            setModalRating(!modalRating);
+                        }}
+                    />
+                </Dialog.Container>
+            )}
             {image ? (
                 <Image source={{ uri: image }} style={styles.image}></Image>
             ) : (

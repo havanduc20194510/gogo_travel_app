@@ -8,22 +8,54 @@ import Const from '../components/Const';
 import Styles, { shadow } from '../components/Styles';
 import navigatorUtils from '../utils/navigator.utils';
 import { useTranslation } from 'react-i18next';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchHeader from '../components/header/SearchHeader';
 import ButtonFullBgr from '../components/buttons/custom/ButtonFullBgr';
 import ButtonIcon from '../components/buttons/custom/ButtonIcon';
+import GlobalIndicator from '../components/indicator/GlobalIndicator';
 
 import { Table, Row, Rows, Col, TableWrapper } from 'react-native-table-component';
 import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
 import env from '../../env.json';
+import DialogError from '../components/dialog/error/DialogError';
+import tourApi from '../controllers/api/tourApi';
+import { useAuth } from '../controllers/hook/AccountHook';
 
 const screenWidth = Const.fullScreenWidth;
 const heightWidth = Const.fullScreenHeight;
-
 export default DetailTourScreen = (params) => {
     const { t } = useTranslation();
+    const accessToken = useAuth();
     const tour = params?.route?.params?.tour;
-    console.log('tour: ', tour.schedules);
+    // console.log('tour: ', JSON.stringify(tour));
+    const [showError, setShowError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [star, setStar] = useState({
+        averageRating: 5,
+        totalReview: 0,
+    });
+
+    const handleGetStart = async () => {
+        // GlobalIndicator.show(t('Syncing'), 'circle');
+        let data = await tourApi.star(accessToken, tour?.tourId);
+        // console.log('  data: ', JSON.stringify(data));
+        if (data?.status === 'error') {
+            // setShowError(!showError);
+            // setErrorMessage(data?.error);
+        } else {
+            data = data?.data?.data ?? data?.data ?? data;
+            setStar(data);
+            console.log('start: ', star);
+        }
+
+        // GlobalIndicator.hide()D;
+        // console.log('tours: ', tours);
+    };
+
+    useEffect(() => {
+        handleGetStart();
+    }, []);
 
     const [desTour, setDesTour] = useState(
         tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description,
@@ -58,10 +90,20 @@ export default DetailTourScreen = (params) => {
             <TouchableOpacity
                 onPress={() => {
                     // handle to screen detail
-                    console.log('abc 123');
+                    // console.log('abc 123');
                 }}
                 style={styles.item}
             >
+                {showError && (
+                    <DialogError
+                        setVisible={setShowError}
+                        visible={showError}
+                        labelCancel={'Cancel'}
+                        labelOk={'OK'}
+                        title={t('Search failed')}
+                        description={errorMessage}
+                    ></DialogError>
+                )}
                 <ParallaxImage
                     source={{
                         uri: item?.url ?? env.dev.defaultImagePlace,
@@ -198,6 +240,9 @@ export default DetailTourScreen = (params) => {
                     >
                         <TouchableOpacity
                             style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => {
+                                console.log(star);
+                            }}
                         >
                             <Ionicons name="heart" size={35} color={'#EC5655'}></Ionicons>
                         </TouchableOpacity>
@@ -222,7 +267,9 @@ export default DetailTourScreen = (params) => {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', margin: 5 }}>
                         <Ionicons name="star" size={24} color={'#DF9652'}></Ionicons>
-                        <Text style={{ color: '#606060', marginHorizontal: 20 }}>4.5 (355 Reviews)</Text>
+                        <Text style={{ color: '#606060', marginHorizontal: 20 }}>
+                            {star?.averageRating ?? 5} ({star?.totalReview ?? 0} Reviews)
+                        </Text>
                     </View>
                     <TouchableOpacity style={{ marginRight: 20 }}>
                         <Text style={{ fontSize: 16, color: AppColors.blueColor, fontWeight: 500 }}>
@@ -314,27 +361,14 @@ export default DetailTourScreen = (params) => {
                                         </Text>
                                         <Table borderStyle={{ borderWidth: 1, borderColor: '#c8e1ff', marginTop: 10 }}>
                                             <TableWrapper style={styles.wrapperTableCol}>
-                                                <Col
-                                                    data={[
-                                                        t('Task'),
-                                                        t('Description'),
-                                                        t('Coin'),
-                                                        t('Reward'),
-                                                        t('Deadline'),
-                                                        t('Status'),
-                                                    ]}
-                                                    style={styles.titleTableCol}
-                                                    heightArr={[28, 28]}
-                                                    textStyle={styles.textTableCol}
-                                                />
                                                 <Rows
                                                     data={[
-                                                        [schedule?.task?.name],
-                                                        [schedule?.task?.description],
-                                                        [schedule?.task?.coin],
-                                                        [schedule?.task?.reward],
-                                                        [schedule?.task?.deadline],
-                                                        [schedule?.task?.status],
+                                                        [t('Task'), schedule?.task?.name],
+                                                        [t('Description'), schedule?.task?.description],
+                                                        [t('Coin'), schedule?.task?.coin],
+                                                        [t('Reward'), schedule?.task?.reward],
+                                                        [t('Deadline'), schedule?.task?.deadline],
+                                                        [t('Status'), schedule?.task?.status],
                                                     ]}
                                                     flexArr={[1, 2]}
                                                     style={styles.rowTableCol}
@@ -512,7 +546,7 @@ const styles = StyleSheet.create({
     headTableCol: { height: 40, backgroundColor: '#f1f8ff' },
     wrapperTableCol: { flexDirection: 'row' },
     titleTableCol: { flex: 1, backgroundColor: '#f6f8fa' },
-    rowTableCol: { height: 28 },
+    rowTableCol: { height: 'auto' },
     textTableCol: { textAlign: 'center' },
 
     item: {
