@@ -1,12 +1,8 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import TourCard from '../components/TourCard/TourCard';
 import { ScrollView } from 'react-native-gesture-handler';
 import HideSearchInput from '../components/input/HideSearchInput';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Selector from '../components/input/Selector';
-import DatePicker from '../components/picker/DatePicker';
-import ButtonFullBgr from '../components/buttons/custom/ButtonFullBgr';
 import PlaceCard from '../components/PlaceCard/PlaceCard';
 import placeApi from '../controllers/api/placceApi';
 import _ from 'lodash';

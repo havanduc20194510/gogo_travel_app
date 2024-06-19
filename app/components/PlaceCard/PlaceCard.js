@@ -20,7 +20,7 @@ export default PlaceCard = ({ place }) => {
             {place?.images[0]?.url ? (
                 <Image source={{ uri: place?.images[0]?.url }} style={styles.image}></Image>
             ) : (
-                <Image style={styles.image} source={require('../../assets/images/imgTourDefault.jpg')}></Image>
+                <Image style={styles.image} src ={require('../../assets/images/imgTourDefault.jpg')}></Image>
             )}
             <View style={{ marginHorizontal: 10, width: '70%', marginVertical: 5 }}>
                 <Text
@@ -29,7 +29,7 @@ export default PlaceCard = ({ place }) => {
                         fontWeight: 700,
                     }}
                 >
-                    {place?.name ?? 'Place'}
+                    {place?.name?.length > 15 ? `${place?.name.slice(0, 15)}...` : place?.name ?? 'Place'}
                 </Text>
                 <Text
                     style={{
@@ -39,7 +39,9 @@ export default PlaceCard = ({ place }) => {
                         fontWeight: 400,
                     }}
                 >
-                    {place?.description ?? t('Description')}
+                    {place?.description?.length > 150
+                        ? `${place?.description.slice(0, 150)}...`
+                        : place?.description ?? 'Description'}
                 </Text>
             </View>
         </TouchableOpacity>
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     container: {
-        width: '100%',
+        width: '89%',
         height: 150,
         borderRadius: 8,
         backgroundColor: AppColors.blueBackGround,

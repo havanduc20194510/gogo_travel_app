@@ -58,13 +58,13 @@ export default DetailTourScreen = (params) => {
     }, []);
 
     const [desTour, setDesTour] = useState(
-        tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description,
+        tour?.description?.length > 15 ? `${tour?.description.substr(0, 150)}...` : tour?.description,
     );
     const [readMoreIcon, setReadMoreIcon] = useState(false);
 
     const handleReadMore = () => {
         if (readMoreIcon) {
-            setDesTour(tour?.description?.length > 15 ? tour?.description.substr(0, 150) : tour?.description);
+            setDesTour(tour?.description?.length > 15 ? `${tour?.description.substr(0, 150)}...` : tour?.description);
         } else {
             setDesTour(tour?.description);
         }

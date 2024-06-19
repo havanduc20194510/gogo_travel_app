@@ -151,7 +151,7 @@ export default PaymentMethodScreen = (params) => {
                     </View>
 
                     {/* payment method */}
-                    <View
+                    {/* <View
                         style={{
                             width: (Const.fullScreenWidth * 8) / 10,
                             alignItems: 'center',
@@ -180,7 +180,7 @@ export default PaymentMethodScreen = (params) => {
                             }}
                             colorSelect={paymentMethod === 'TRANSFER' ? 'red' : null}
                         ></ButtonHasBorderSelect>
-                    </View>
+                    </View> */}
 
                     {/* user voucher */}
                     {/* <View

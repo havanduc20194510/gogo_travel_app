@@ -204,7 +204,7 @@ export default ChatBotScreen = () => {
                     return (
                         <PlaceSuggestionByChatBot
                             image={tour?.img ?? image}
-                            name={tour?.name ?? null}
+                            name={tour?.name ?? tour?.location ?? null}
                             description={tour.description}
                             tour={tour}
                         ></PlaceSuggestionByChatBot>

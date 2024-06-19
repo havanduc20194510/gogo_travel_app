@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { formatCurrencyK } from '../utils/util';
 import TourCardSaved from '../components/TourCard/TourCardSaved';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default SavedScreen = () => {
     const user = useAccount();

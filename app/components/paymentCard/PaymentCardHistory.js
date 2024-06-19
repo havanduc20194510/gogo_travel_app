@@ -33,7 +33,7 @@ export default PaymentHistoryCard = ({ image, paymentHistory }) => {
                         color: AppColors.backgroundHeader,
                     }}
                 >
-                    {paymentHistory.tourName ? (paymentHistory.tourName.length > 15 ? paymentHistory.tourName.slice(0, 15) : paymentHistory.tourName) : t('Tour card')}
+                    {paymentHistory.tourName ? (paymentHistory.tourName.length > 15 ? `${paymentHistory.tourName.slice(0, 15)}...` : paymentHistory.tourName) : t('Tour card')}
                 </Text>
 
                 <Text

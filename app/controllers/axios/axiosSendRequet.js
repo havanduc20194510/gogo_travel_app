@@ -95,7 +95,7 @@ export async function axiosSendRequest(
     // console.log('config: ', config);
     await axios(config)
         .then((data) => {
-            responseData = data;
+            responseData = data; // nhin thay gi ko
         })
         .catch((error) => {
             // console.error(error);
@@ -136,6 +136,9 @@ export async function axiosSendRequest(
     //         '\n',
     //     );
     // }
+
+    // xong return ve no luon nay
+
     return responseData;
 }
 

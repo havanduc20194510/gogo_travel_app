@@ -32,7 +32,7 @@ export default TourCard = ({ image, name, description, tour }) => {
                         color: AppColors.backgroundHeader,
                     }}
                 >
-                    {name ? (name.length > 15 ? name.slice(0, 15) : name) : t('Tour card')}
+                    {name ? (name.length > 15 ? `${name.slice(0, 15)}...` : name) : t('Tour card')}
                 </Text>
                 <Text
                     style={{

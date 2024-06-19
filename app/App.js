@@ -1,6 +1,6 @@
 import React from 'react';
 // import { SafeAreaProvider } from "react-native-safe-area-context";
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { LogBox, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { store } from './controllers/redux/AppStore';
 import AppNavigator from './Navigator/AppNavigator';
 import { Provider } from 'react-redux';
@@ -29,7 +29,7 @@ const App = () => {
     // }
 
     // Remove this method to stop OneSignal Debugging
-    OneSignal.Debug.setLogLevel(LogLevel.Verbose);
+    // OneSignal.Debug.setLogLevel(LogLevel.Verbose);
 
     // OneSignal Initialization
     OneSignal.initialize('e4303842-6a36-4be3-8fcf-b0a2c6697723');
@@ -43,6 +43,7 @@ const App = () => {
         console.log('OneSignal: notification clicked:', event);
     });
 
+    LogBox.ignoreAllLogs(true);
     return (
         // <SafeAreaProvider>
         <SafeAreaView style={styles.container}>

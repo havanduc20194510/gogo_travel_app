@@ -116,6 +116,13 @@ export default TourCardSaved = ({
                             setModalRating(!modalRating);
                         }}
                     />
+                    <Dialog.Button
+                        label="Detail"
+                        onPress={() => {
+                            setModalRating(!modalRating);
+                            navigatorUtils.navigate('DetailTourBookingScreen', { tour: tour, booking });
+                        }}
+                    />
                 </Dialog.Container>
             )}
             {image ? (
@@ -133,7 +140,7 @@ export default TourCardSaved = ({
                         color: AppColors.backgroundHeader,
                     }}
                 >
-                    {tourName ? (tourName.length > 15 ? tourName.slice(0, 15) : tourName) : t('Tour card')}
+                    {tourName ? (tourName.length > 15 ? `${tourName.slice(0, 15)}...` : tourName) : t('Tour card')}
                 </Text>
                 <View
                     style={{

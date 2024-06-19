@@ -204,9 +204,9 @@ export default PlaceDetailScreen = (params) => {
                 {/* rate */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', margin: 5 }}>
-                        <Ionicons name="star" size={24} color={'#DF9652'}></Ionicons>
+                        <Ionicons name="eye" size={24} color={'#DF9652'}></Ionicons>
                         <View style={{ color: '#606060', marginHorizontal: 20 }}>
-                            <Text style={{}}>4.5 (355 Reviews)</Text>
+                            {/* <Text style={{}}>4.5 (355 Reviews)</Text> */}
                             <Text>{place?.totalView ?? 0} Views</Text>
                         </View>
                     </View>
